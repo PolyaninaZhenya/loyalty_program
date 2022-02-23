@@ -1,17 +1,17 @@
 import type { NextPage } from 'next'
 import {useAuthState} from "react-firebase-hooks/auth";
 import {app} from "../firebase/clientApp";
-import * as firebase from "firebase/app";
 import {getAuth} from "firebase/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { getFirestore } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
+import Container from '@mui/material/Container';
+import {useRouter} from "next/router";
+import mainMenu from "../store/MainMenu";
 
 const Home: NextPage = () => {
-
   const auth = getAuth(app);
   const [user, loading, error] = useAuthState(auth);
-
   const db = getFirestore()
 
   try {
@@ -30,9 +30,9 @@ const Home: NextPage = () => {
   }
 
   return (
-    <>
-      Hello
-    </>
+    <Container>
+      <h1>Главная страница</h1>
+    </Container>
   )
 }
 
