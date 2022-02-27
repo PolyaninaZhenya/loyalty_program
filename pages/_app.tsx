@@ -5,6 +5,7 @@ import MyHeader from "../src/components/layouts/Header/MyHeader";
 import {useRouter} from "next/router";
 import mainMenu from '../store/MainMenu'
 import {useEffect} from "react";
+import Container from "@mui/material/Container";
 
 //Главный компонент обертки приложения
 function MyApp({Component, pageProps}: AppProps) {
@@ -12,7 +13,9 @@ function MyApp({Component, pageProps}: AppProps) {
     return (
         <>
             <MyHeader/>
-            <Component {...pageProps} />
+            <Container>
+                <Component {...pageProps} />
+            </Container>
         </>
     )
 }

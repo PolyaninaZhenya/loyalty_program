@@ -6,9 +6,9 @@ import {observer} from "mobx-react-lite";
 
 const About: NextPage = () => {
     return (
-        <Container>
+        <div>
             <h1>О нас</h1>
-        </Container>
+        </div>
     )
 };
 

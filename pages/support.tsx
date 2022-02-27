@@ -6,9 +6,9 @@ import mainMenu from "../store/MainMenu";
 const Support: NextPage = () => {
 
     return (
-        <Container>
+        <div>
             <h1>Поддержка</h1>
-        </Container>
+        </div>
     )
 };
 

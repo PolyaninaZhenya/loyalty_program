@@ -12,10 +12,10 @@ const Tariffs: NextPage = () => {
             <Head>
                 <title>Тарифы</title>
             </Head>
-            <Container>
+            <div>
                 <h1>Тарифы</h1>
                 <TariffItem/>
-            </Container>
+            </div>
         </>
     )
 };

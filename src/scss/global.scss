@@ -1,3 +1,37 @@
 body {
   background-color: var(--color-bg);
 }
+
+.body-plate {
+  background-color: #fff;
+  border-radius: 50px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+
+  &_login {
+    align-items: flex-start;
+    padding-top: 100px;
+    min-height: calc(100vh - 100px);
+  }
+}
+
+.myTab{
+  font-size: 14px;
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 800;
+  color: var(--color-primary);
+  text-transform: capitalize;
+}
+
+.myFont {
+  font-family: 'Montserrat', sans-serif;
+}

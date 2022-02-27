@@ -30,9 +30,9 @@ const Home: NextPage = () => {
   }
 
   return (
-    <Container>
+    <div>
       <h1>Главная страница</h1>
-    </Container>
+    </div>
   )
 }
 
