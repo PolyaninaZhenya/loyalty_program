@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import style from './FormLogin.module.scss'
+import style from './FormLoginUL.module.scss'
 import cl from 'classnames'
 import NextLink from 'next/link'
 import firebase from "firebase/compat";
@@ -16,10 +16,10 @@ interface FormLoginProps {
 }
 {/*
 ---------------------------------------------
--- Компонент Формы входа для клиента
+-- Компонент Формы входа для компаний
 ---------------------------------------------
 */}
-const Formlogin:FC<FormLoginProps> = (props) => {
+const FormloginUL:FC<FormLoginProps> = (props) => {
     return (
         <div>
             <Box
@@ -37,7 +37,7 @@ const Formlogin:FC<FormLoginProps> = (props) => {
                 <FormGroup>
                     <TextField
                         id="username"
-                        label="Логин"
+                        label="ID Компании"
                         variant="standard"
                         fullWidth={true}
                         className={style.input}
@@ -68,7 +68,7 @@ const Formlogin:FC<FormLoginProps> = (props) => {
                     </Button>
                 </div>
                 <div className={style.footer}>
-                    <NextLink href="/register">
+                    <NextLink href="/">
                         <a>Создать учетну  запись</a>
                     </NextLink>
                     |
@@ -81,4 +81,4 @@ const Formlogin:FC<FormLoginProps> = (props) => {
     );
 };
 
-export default Formlogin;
+export default FormloginUL;

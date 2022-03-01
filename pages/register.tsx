@@ -1,19 +1,20 @@
 import type {NextPage} from 'next'
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Formlogin from "../src/components/FormLogin/Formlogin";
 import TabPanel from 'src/components/TabPanel/TabPanel'
 import {SetStateAction, useState} from "react";
-import FormloginUL from "../src/components/FormLoginUL/FormloginUL";
+import FormRegister from "../src/components/FormRegister/FormRegister";
+import FormRegisterUL from "../src/components/FormRegister/FormRegisterUL";
 
-function a11yProps(index: number) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
+const Register: NextPage = () => {
 
-const Login: NextPage = () => {
+    function a11yProps(index: number) {
+        return {
+            id: `simple-tab-${index}`,
+            'aria-controls': `simple-tabpanel-${index}`,
+        };
+    }
+
     const [value, setValue] = useState(0); // Обьявляем внутренее состояние табов
 
     // Обработчик изменения активного таба
@@ -22,23 +23,23 @@ const Login: NextPage = () => {
     };
 
     return (
-        <div className={'row row_login'}>
-            <div className={'body-plate page-login'}>
-                <div className={'title title-h3'}>Вход</div>
+        <div className={'row'}>
+            <div className={'body-plate page-register'}>
+                <div className={'title title-h3'}>Регистрация</div>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                    <Tab label="Клиент" {...a11yProps(0)} className={'myTab'}/>
-                    <Tab label="Организация" {...a11yProps(1)} className={'myTab'}/>
+                    <Tab label="Как пользователь" {...a11yProps(0)} className={'myTab'}/>
+                    <Tab label="Как юридическое лицо" {...a11yProps(1)} className={'myTab'}/>
                 </Tabs>
 
                 <TabPanel index={0} value={value}>
-                    <Formlogin/>
+                    <FormRegister/>
                 </TabPanel>
                 <TabPanel index={1} value={value}>
-                    <FormloginUL/>
+                    <FormRegisterUL/>
                 </TabPanel>
             </div>
         </div>
     )
 };
 
-export default Login;
+export default Register;
