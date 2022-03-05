@@ -2,20 +2,23 @@ import style from './MainMenu.module.scss'
 import React, {FC} from "react";
 import cl from 'classnames'
 import MenuItem, { MenuItemProps } from './MenuItem/MenuItem'
+import {useAuth} from "../../../context/auth";
+import mainMenu from '../../../../store/MainMenu'
+import {useRouter} from "next/router";
+import {observer} from "mobx-react-lite";
 
-interface MainMenuProps extends React.Component {
-    className?: string,
-    list: Array<MenuItemProps>,
-    auth?: boolean,
+interface MainMenuProps {
+    className?: string
 }
 
-const MainMenu: FC<MainMenuProps> = (props) => {
+const MainMenu = observer((props: MainMenuProps) => {
+
+    const router = useRouter()
+    mainMenu.initActive(router.route)
 
     // Делаем реструкторизацию пропсов /
     const {
         className,
-        auth = false,
-        list,
         ...rest
     } = props
 
@@ -28,7 +31,7 @@ const MainMenu: FC<MainMenuProps> = (props) => {
     return (
         <nav className={classesNav} {...rest}>
             {
-                list.map((item) => (
+                mainMenu.list.map((item) => (
                     <MenuItem
                         key={item.id}
                         id={item.id}
@@ -40,6 +43,6 @@ const MainMenu: FC<MainMenuProps> = (props) => {
             }
         </nav>
     );
-};
+});
 
 export default MainMenu;

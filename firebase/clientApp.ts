@@ -1,8 +1,11 @@
 import "firebase/auth";
 import "firebase/firestore";
-import {FirebaseApp, initializeApp} from "firebase/app";
+import {FirebaseApp, initializeApp, getApp, getApps} from "firebase/app";
+let app : FirebaseApp
 
-const clientCredentials = {
+
+// Настраиваем конфиги Firebase
+const FirebaseConfig = {
   apiKey: process.env.apiKey,
   authDomain: process.env.authDomain,
   projectId: process.env.projectId,
@@ -11,8 +14,11 @@ const clientCredentials = {
   appId: process.env.appId,
 };
 
+if (getApps().length) {  //Делаем проверку инициализировано приложение firebase или нет
+  app = getApp()         // если да то получаем приложение
+} else {
+  app = initializeApp(FirebaseConfig) // если нет то инициализируем
+}
 
-const app: FirebaseApp = initializeApp(clientCredentials);
-
-export {app};
+export default app;
 

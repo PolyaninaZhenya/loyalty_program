@@ -1,5 +1,4 @@
-import { makeAutoObservable } from "mobx";
-import {useRouter} from "next/router";
+import {makeAutoObservable} from "mobx";
 
 class MainMenuStore {
     list = [
@@ -34,16 +33,29 @@ class MainMenuStore {
     }
 
     //Метод устанавливающий активный пункт меню
-    initActive(slug: string){
+    initActive(slug: string) {
         //Сбрасываем со всех пунктов меню активное состояние
         this.list.forEach(item => item.active = false)
 
         //Находим в массиве нужный пункт меню и устанавливаем его активное состояние
         this.list.forEach(item => {
             if (slug === item.href) {
-                console.log('Совпадление - ', slug, item.href)
                 item.active = true
             }
+        })
+    }
+
+    initUser() {
+        this.list.forEach(item => {
+            if (item.id === 4) {
+                return {
+                    id: 4,
+                    label: 'Личный кабинет',
+                    href: '/account',
+                    active: false,
+                }
+            }
+            return item
         })
     }
 }
