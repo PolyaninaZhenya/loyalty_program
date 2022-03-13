@@ -1,20 +1,56 @@
 import style from './MainMenu.module.scss'
-import React, {FC} from "react";
+import React, {FC, useEffect} from "react";
 import cl from 'classnames'
 import MenuItem, { MenuItemProps } from './MenuItem/MenuItem'
-import {useAuth} from "../../../context/auth";
-import mainMenu from '../../../../store/MainMenu'
 import {useRouter} from "next/router";
-import {observer} from "mobx-react-lite";
 
 interface MainMenuProps {
     className?: string
 }
 
-const MainMenu = observer((props: MainMenuProps) => {
+const MainMenu = (props: MainMenuProps) => {
 
     const router = useRouter()
-    mainMenu.initActive(router.route)
+
+    const list = [
+        {
+            id: 1,
+            label: 'Тарифы',
+            href: '/tariffs',
+            active: true,
+        },
+        {
+            id: 2,
+            label: 'О проекте',
+            href: '/about',
+            active: false,
+        },
+        {
+            id: 3,
+            label: 'Поддержка',
+            href: '/support',
+            active: false,
+        },
+        {
+            id: 4,
+            label: 'Войти',
+            href: '/login',
+            active: false,
+        }
+    ]
+
+    const setActiveMenu = (slug: string) => {
+        //Сбрасываем со всех пунктов меню активное состояние
+        list.forEach(item => {
+            item.active = false
+
+            if (slug === item.href) {
+                item.active = true
+            }
+        })
+    }
+
+    setActiveMenu(router.route)
 
     // Делаем реструкторизацию пропсов /
     const {
@@ -31,7 +67,7 @@ const MainMenu = observer((props: MainMenuProps) => {
     return (
         <nav className={classesNav} {...rest}>
             {
-                mainMenu.list.map((item) => (
+                list.map((item) => (
                     <MenuItem
                         key={item.id}
                         id={item.id}
@@ -43,6 +79,6 @@ const MainMenu = observer((props: MainMenuProps) => {
             }
         </nav>
     );
-});
+};
 
 export default MainMenu;

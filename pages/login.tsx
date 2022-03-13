@@ -5,6 +5,7 @@ import Formlogin from "../src/components/FormLogin/Formlogin";
 import TabPanel from 'src/components/TabPanel/TabPanel'
 import {SetStateAction, useState} from "react";
 import FormloginUL from "../src/components/FormLoginUL/FormloginUL";
+import {useAuth} from "../src/context/auth";
 
 function a11yProps(index: number) {
     return {
@@ -15,6 +16,8 @@ function a11yProps(index: number) {
 
 const Login: NextPage = () => {
     const [value, setValue] = useState(0); // Обьявляем внутренее состояние табов
+
+    const {user, login, logout} = useAuth();
 
     // Обработчик изменения активного таба
     const handleChange = (event: any, newValue: SetStateAction<number>) => {
@@ -32,6 +35,10 @@ const Login: NextPage = () => {
 
                 <TabPanel index={0} value={value}>
                     <Formlogin/>
+                    <div>или войдите с помощью</div>
+                     <div>
+                         <button onClick={login}>google</button>
+                     </div>
                 </TabPanel>
                 <TabPanel index={1} value={value}>
                     <FormloginUL/>

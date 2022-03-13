@@ -1,7 +1,6 @@
 import {createContext, FC, useContext, useEffect, useState} from "react";
 import {getAuth, GoogleAuthProvider, User, signInWithPopup, signOut, onAuthStateChanged} from "firebase/auth";
 import app from "../../firebase/clientApp"
-import mainMenu from '../../store/MainMenu'
 
 // Описываем типы данных обьекта MyAuth
 interface MyAuth {
@@ -9,6 +8,7 @@ interface MyAuth {
     login: () => void,
     logout: () => void
 }
+
 
 // Создаем контект авторизации для того что бы не прокидывать пропсами информацию  о пользователе
 const AuthContext = createContext<MyAuth>({

@@ -25,6 +25,7 @@ const FormRegister = () => {
     }
 
     useEffect(() => {
+        console.log(password)
         setPasswordEqual(password !== passwordTrue)
     })
 
