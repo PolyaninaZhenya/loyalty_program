@@ -1,8 +1,15 @@
 import type { NextPage } from 'next'
 import {useAuth} from "../src/context/auth";
+import {useRouter} from "next/router";
 
 const Account: NextPage = () => {
     const {user, login, logout} = useAuth();
+
+    const router = useRouter()
+
+    if (!user){
+        router.push('/login')
+    }
 
     return (
         <div>
@@ -21,8 +28,6 @@ const Account: NextPage = () => {
                 {user && <button onClick={logout}>Выйти</button>}
                 {!user && <button onClick={login}>Войти</button>}
             </div>
-
-
         </div>
     )
 }

@@ -6,6 +6,7 @@ import TabPanel from 'src/components/TabPanel/TabPanel'
 import {SetStateAction, useState} from "react";
 import FormloginUL from "../src/components/FormLoginUL/FormloginUL";
 import {useAuth} from "../src/context/auth";
+import {useRouter} from "next/router";
 
 function a11yProps(index: number) {
     return {
@@ -19,10 +20,17 @@ const Login: NextPage = () => {
 
     const {user, login, logout} = useAuth();
 
+    const router = useRouter()
+
     // Обработчик изменения активного таба
     const handleChange = (event: any, newValue: SetStateAction<number>) => {
         setValue(newValue);
     };
+
+    if (user) {
+        router.push('/account')
+    }
+
 
     return (
         <div className={'row row_login'}>

@@ -7,13 +7,21 @@ import React, {useEffect, useState} from "react";
 import Checkbox from "@mui/material/Checkbox";
 import cl from "classnames";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import {useAuth} from "../../context/auth";
 
 const FormRegister = () => {
 
+    // Переменные состояния паролей
     const [password, setPassword] = useState('') //Инициализируем переменную состояни поля пароль
     const [passwordTrue, setPasswordTrue] = useState('')//Инициализируем переменную состояни поля повторите пароль
-
     const [passwordEqual, setPasswordEqual] = useState(true)
+
+    const {user, login, logout, register} = useAuth();
+
+    const [userName, setUserName] = useState(null)
+    const [userPhone, setUserPhone] = useState(null)
+    const [userEmail, setUserEmail] = useState(null)
+    const [userApply, setUserApply] = useState(false)
 
     //Функции обратного связывания для полей паролей
     const changePassword = (event: any) => {
@@ -24,13 +32,40 @@ const FormRegister = () => {
         setPasswordTrue(event.target.value)
     }
 
+    const changeUserName = (event: any) => {
+        setUserName(event.target.value)
+    }
+
+    const changeUserPhone = (event: any) => {
+        setUserPhone(event.target.value)
+    }
+    const changeUserEmail = (event: any) => {
+        setUserEmail(event.target.value)
+    }
+    const changeUserApply = (event: any) => {
+        setUserApply(!userApply)
+    }
+
     useEffect(() => {
-        console.log(password)
         setPasswordEqual(password !== passwordTrue)
     })
 
+    const onSubmitForm = (event: any) => {
+        event.preventDefault()
+        console.log('Запустил скрипт')
+        console.log({
+            userName,userEmail,userPhone,password,passwordEqual,userApply
+        })
+        if(userName && userEmail && userPhone && password && !passwordEqual && userApply){
+            console.log('Проверка пройдена')
+            register(userEmail, userName, password)
+        } else {
+            console.log('Проверка не пройдена')
+        }
+    }
+
     return (
-        <form className={style.form}>
+        <div className={style.form} >
             <Box
                 component="form"
                 sx={{
@@ -51,6 +86,8 @@ const FormRegister = () => {
                         label="Имя"
                         variant="standard"
                         fullWidth={true}
+                        value={userName}
+                        onChange={changeUserName}
                         className={style.input}
                     />
                 </FormGroup>
@@ -61,6 +98,8 @@ const FormRegister = () => {
                         label="Телефон"
                         variant="standard"
                         fullWidth={true}
+                        value={userPhone}
+                        onChange={changeUserPhone}
                         className={style.input}
                     />
                 </FormGroup>
@@ -70,6 +109,8 @@ const FormRegister = () => {
                         type='email'
                         label="E-mail"
                         variant="standard"
+                        value={userEmail}
+                        onChange={changeUserEmail}
                         fullWidth={true}
                         className={style.input}
                     />
@@ -103,7 +144,7 @@ const FormRegister = () => {
                 </FormGroup>
                 <FormGroup>
                     <FormControlLabel
-                        control={<Checkbox defaultChecked/>}
+                        control={<Checkbox checked={userApply} onChange={changeUserApply}/>}
                         label="Я принимаю условия пользовательского соглашения"
                         className={cl(style.input)}
                     />
@@ -112,13 +153,13 @@ const FormRegister = () => {
                     <Button variant="contained"
                             size={'large'}
                             component="span"
+                            onClick={onSubmitForm}
                             className={style.button}
-                    >
-                        Зарегистрироваться
+                    >Зарегистрироваться
                     </Button>
                 </FormGroup>
             </Box>
-        </form>
+        </div>
     );
 };
 

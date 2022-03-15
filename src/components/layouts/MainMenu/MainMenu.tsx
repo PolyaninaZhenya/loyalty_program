@@ -1,18 +1,20 @@
 import style from './MainMenu.module.scss'
-import React, {FC, useEffect} from "react";
+import React, {FC, useEffect, useState} from "react";
 import cl from 'classnames'
-import MenuItem, { MenuItemProps } from './MenuItem/MenuItem'
+import MenuItem, {MenuItemProps} from './MenuItem/MenuItem'
 import {useRouter} from "next/router";
+import {useAuth} from "../../../context/auth";
 
 interface MainMenuProps {
-    className?: string
+    className?: string,
+    user?: object | null
 }
 
 const MainMenu = (props: MainMenuProps) => {
 
     const router = useRouter()
 
-    const list = [
+    let list = [
         {
             id: 1,
             label: 'Тарифы',
@@ -35,6 +37,12 @@ const MainMenu = (props: MainMenuProps) => {
             id: 4,
             label: 'Войти',
             href: '/login',
+            active: false,
+        },
+        {
+            id: 5,
+            label: 'Личный кабинет',
+            href: '/account',
             active: false,
         }
     ]
@@ -67,15 +75,24 @@ const MainMenu = (props: MainMenuProps) => {
     return (
         <nav className={classesNav} {...rest}>
             {
-                list.map((item) => (
-                    <MenuItem
+                list.map((item) => {
+
+                    if (props.user && item.id === 4) {
+                        return null
+                    }
+
+                    if (!props.user && item.id === 5) {
+                        return null
+                    }
+
+                    return <MenuItem
                         key={item.id}
                         id={item.id}
                         label={item.label}
                         href={item.href}
                         active={item.active}
-                        />
-                ))
+                    />
+                })
             }
         </nav>
     );
