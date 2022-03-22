@@ -1,0 +1,36 @@
+.nav {
+  position: fixed;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 0 16px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  @media (min-width: 992px) {
+    display: none;
+  }
+}
+
+.item {
+  padding: 18px 16px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--color-secondary);
+
+  .label {
+    font-size: 12px;
+  }
+
+  .icon {
+
+  }
+}
+
+.active {
+  color: var(--color-primary);
+}

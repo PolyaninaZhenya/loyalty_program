@@ -1,0 +1,10 @@
+@import "scss/mixins";
+
+.container {
+
+}
+
+.title {
+  @include font-size(30, 24);
+  margin-bottom: 16px;
+}

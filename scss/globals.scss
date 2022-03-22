@@ -1,4 +1,27 @@
-@import "~normalize.css/normalize.css";
+@import "ui/button";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    background-color: var(--color-bg);
+  background-color: var(--color-bg);
+}
+
+.body-pallet {
+  border-radius: var(--border-radius-pallet);
+  background-color: var(--color-bg-pallet);
+  box-shadow: var(--box-shadow-pallet);
+  padding: 16px;
+  overflow: hidden;
+
+  @media(min-width: 992px) {
+    padding: 32px;
+  }
+}
+
+.mv-32 {
+  margin-top: 32px;
+  margin-bottom: 32px;
 }

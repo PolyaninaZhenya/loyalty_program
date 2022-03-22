@@ -1,0 +1,14 @@
+.my-button {
+  border-radius: 50px;
+  padding: 18px 36px;
+
+  &__primary {
+    @extend .my-button;
+    font-weight: 800;
+    background-color: var(--color-primary);
+
+    &:hover {
+      background-color: var(--color-primary-hover);
+    }
+  }
+}
