@@ -1,19 +1,23 @@
 .container {
+  height: 200px;
+  position: relative;
 
+  @media (min-width: 992px) {
+    height: 180px;
+  }
 }
 
 .wrapper {
   padding: 16px;
-  height: 180px;
+  height: 100%;
   background-color: #ddd;
   border-radius: var(--border-radius-pallet);
   background-size: cover;
-
 }
 
 .title {
   color: #fff;
-  background-color: rgba(0,0,0, .7);
+  background-color: rgba(0, 0, 0, .7);
   padding: 8px;
   display: inline-flex;
   border-radius: var(--border-radius-pallet);
@@ -22,4 +26,9 @@
   @media (min-width: 992px) {
     font-size: 16px;
   }
+}
+
+.skeleton {
+  border-radius: 20px;
+  overflow: hidden;
 }

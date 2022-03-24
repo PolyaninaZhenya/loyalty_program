@@ -6,12 +6,10 @@ import style from "./header.module.scss"
 import cl from "classname"
 
 const Header = () => {
-
     const classesContainer = cl(
         'body-pallet',
         style.container
     )
-
     return (
         <>
             <header className={style.header}>

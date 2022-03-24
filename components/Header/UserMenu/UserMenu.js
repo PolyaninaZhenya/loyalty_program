@@ -11,6 +11,7 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import PersonIcon from '@mui/icons-material/Person';
 
 const UserMenu = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -72,7 +73,10 @@ const UserMenu = () => {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 <MenuItem>
-                    <Avatar /> Профиль
+                    <ListItemIcon>
+                        <PersonIcon/>
+                    </ListItemIcon>
+                    Личный кабинет
                 </MenuItem>
                 <Divider />
                 <MenuItem>

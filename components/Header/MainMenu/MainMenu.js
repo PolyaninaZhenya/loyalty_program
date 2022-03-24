@@ -1,8 +1,14 @@
 import style from "./mainmenu.module.scss"
 import UserMenu from "../UserMenu/UserMenu";
 import Link from "next/link";
+import {useAuth} from "../../../context/auth";
+import {useRouter} from "next/router";
 
 const MainMenu = () => {
+    const {user, login, logout} = useAuth();
+
+    const router = useRouter()
+
     let list = [
         {
             id: 1,
@@ -39,7 +45,9 @@ const MainMenu = () => {
                     <li><Link href="/catalog"><a>Контакты</a></Link></li>
                 </ul>
             </nav>
-            <UserMenu/>
+            {
+                user ? (<UserMenu/>) : (<Link href="/login"><a>Войти</a></Link>)
+            }
         </>
     );
 };

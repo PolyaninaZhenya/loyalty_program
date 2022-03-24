@@ -1,0 +1,25 @@
+.body {
+
+}
+
+.image {
+  background-image: url('../../../public/about.png');
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: none;
+  border-radius: 20px;
+  overflow: hidden;
+
+  @media (min-width: 992px) {
+    display: block;
+  }
+}
+
+.title {
+  margin-bottom: 16px;
+
+  @media (min-width: 992px) {
+    margin-bottom: 32px;
+  }
+}
