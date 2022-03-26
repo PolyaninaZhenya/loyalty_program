@@ -1,21 +1,24 @@
 import React, {useState} from 'react';
-import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
+import Link from 'next/link'
 
-const UserMenu = () => {
+const UserMenu = (props) => {
+    const {user, logout} = props
+    console.log(
+        user
+    )
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -29,12 +32,12 @@ const UserMenu = () => {
                 <IconButton
                     onClick={handleClick}
                     size="small"
-                    sx={{ ml: 2 }}
+                    sx={{ml: 2}}
                     aria-controls={open ? 'account-menu' : undefined}
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
                 >
-                    <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                    {user && <Avatar sx={{width: 32, height: 32}} src={user.photoURL}/>}
                 </IconButton>
             </Tooltip>
             <Menu
@@ -69,25 +72,33 @@ const UserMenu = () => {
                         },
                     },
                 }}
-                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                transformOrigin={{horizontal: 'right', vertical: 'top'}}
+                anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
             >
                 <MenuItem>
-                    <ListItemIcon>
-                        <PersonIcon/>
-                    </ListItemIcon>
-                    Личный кабинет
+                    <Link href={'/account'}>
+                        <a style={{display: 'inline-flex'}}>
+                            <ListItemIcon>
+                                <PersonIcon/>
+                            </ListItemIcon>
+                            Личный кабинет
+                        </a>
+                    </Link>
                 </MenuItem>
-                <Divider />
+                <Divider/>
                 <MenuItem>
-                    <ListItemIcon>
-                        <Settings fontSize="small" />
-                    </ListItemIcon>
-                    Настройки
+                    <Link href={'/settings'}>
+                        <a style={{display: 'inline-flex'}}>
+                            <ListItemIcon>
+                                <Settings fontSize="small"/>
+                            </ListItemIcon>
+                            Настройки
+                        </a>
+                    </Link>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem onClick={logout}>
                     <ListItemIcon>
-                        <Logout fontSize="small" />
+                        <Logout fontSize="small"/>
                     </ListItemIcon>
                     Выйти
                 </MenuItem>

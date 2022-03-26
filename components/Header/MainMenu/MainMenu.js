@@ -46,7 +46,7 @@ const MainMenu = () => {
                 </ul>
             </nav>
             {
-                user ? (<UserMenu/>) : (<Link href="/login"><a>Войти</a></Link>)
+                user ? (<UserMenu user={user} logout={logout}/>) : (<Link href="/login"><a>Войти</a></Link>)
             }
         </>
     );

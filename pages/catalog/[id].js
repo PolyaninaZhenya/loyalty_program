@@ -2,8 +2,8 @@ import Grid from "@mui/material/Grid";
 import backend from "../../backend/clientWp";
 import Image from 'next/image'
 
-export default function CatalogSingle({ post, media, terms}) {
-    console.log(terms)
+export default function CatalogSingle({post, media, terms}) {
+    console.log(post)
     return (
         <>
             <div className={'body-pallet'}>
@@ -12,17 +12,26 @@ export default function CatalogSingle({ post, media, terms}) {
                         <div className={'card'}>
                             <Image src={media.source_url} layout={'fill'}/>
                         </div>
-                        {
-                            terms.map((term) => (
-                                <span key={term.id}>{term.name}</span>
-                            ))
-                        }
                     </Grid>
                     <Grid item xs={12} lg={8}>
+                        <small>Тип:
+                            {
+                                terms.map((term) => (
+                                    <span key={term.id}> {term.name}</span>
+                                ))
+                            }</small>
                         <h1 dangerouslySetInnerHTML={{__html: post.title.rendered}}/>
                     </Grid>
                 </Grid>
             </div>
+            {
+                post.content.rendered && <div className={'body-pallet mv-32'}>
+                    <div>
+                        <h3 className={'mb-16'}>Описание</h3>
+                        <div dangerouslySetInnerHTML={{__html: post.content.rendered}}/>
+                    </div>
+                </div>
+            }
         </>
     )
 }

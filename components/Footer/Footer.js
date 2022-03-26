@@ -6,11 +6,11 @@ import style from './footer.module.scss'
 import cl from "classname"
 
 const Footer = () => {
-
     const classesContainer = cl([
         style.container,
         'body-pallet'
     ])
+
     return (
         <>
             <footer className={[style.footer, 'mv-32']}>

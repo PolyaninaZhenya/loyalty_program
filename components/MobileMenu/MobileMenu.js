@@ -1,49 +1,47 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import style from "./mobilemenu.module.scss"
 import MobileMenuItem from "./MobileMenuItem";
 import {useRouter} from "next/router";
+import {useAuth} from "../../context/auth";
 
 const MobileMenu = () => {
     const router = useRouter()
-
-    let list = [
-        {
-            id: 1,
-            label: 'Главная',
-            icon: 'home',
-            url: '/',
-            isActive: false
-        },
-        {
-            id: 2,
-            label: 'Каталог',
-            icon: 'catalog',
-            url: '/catalog',
-            isActive: false
-        },
-        {
-            id: 3,
-            label: 'Профиль',
-            icon: 'user',
-            url: '/user',
-            isActive: false
-        }
-    ]
-
-    const initActiveItem = (slug) => {
-        list.forEach((item) => {
-            item.isActive = slug === item.url;
-        })
-    }
-
-    initActiveItem(router.route)
+    const {user, login, logout} = useAuth();
 
     return (
         <nav className={style.nav}>
+            <MobileMenuItem item={{
+                id: 1,
+                label: 'Главная',
+                icon: 'home',
+                url: '/',
+                isActive: false
+            }}/>
+            <MobileMenuItem item={{
+                id: 2,
+                label: 'Каталог',
+                icon: 'catalog',
+                url: '/catalog',
+                isActive: false
+            }}/>
             {
-                list.map((item) => (
-                    <MobileMenuItem item={item} key={item.id}/>
-                ))
+                user ? (
+                    <MobileMenuItem item={{
+                        id: 3,
+                        label: 'Профиль',
+                        icon: 'user',
+                        url: '/account',
+                        isActive: false
+                    }}/>
+                ) : (
+                    <MobileMenuItem item={{
+                        id: 3,
+                        label: 'Войти',
+                        icon: 'catalog',
+                        url: '/login',
+                        isActive: false
+                    }}/>
+                )
             }
         </nav>
     );

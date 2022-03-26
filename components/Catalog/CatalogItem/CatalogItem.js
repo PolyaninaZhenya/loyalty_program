@@ -7,11 +7,10 @@ const CatalogItem = ({post, image}) => {
     const [dataImg, setDataImg] = useState()
     image.then(res => setDataImg(res))
 
-    console.log(dataImg)
-
     return (
         <div className={style.container}>
             <Link href={`/catalog/${post.id}`}>
+                <a>
                 {
                     dataImg ? (
                         <div className={style.wrapper} style={{backgroundImage: `url(${dataImg[0].media_details.sizes.medium.source_url})`}}>
@@ -21,6 +20,7 @@ const CatalogItem = ({post, image}) => {
                         <Skeleton variant="rectangular" height={'100%'} className={style.skeleton}/>
                     )
                 }
+                </a>
             </Link>
         </div>
     );
