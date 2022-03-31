@@ -1,0 +1,25 @@
+.nav {
+  align-items: center;
+  justify-content: flex-start;
+  display: none;
+  flex-grow: 1;
+  width: 100%;
+
+  @media (min-width: 992px) {
+    display: flex;
+  }
+}
+
+.ul {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+
+  li {
+    a {
+      display: inline-flex;
+      padding: 8px 16px;
+    }
+  }
+}

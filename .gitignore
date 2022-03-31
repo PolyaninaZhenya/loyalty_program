@@ -1,35 +1,26 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Application
+backend/app/plugins/*
+!backend/app/plugins/.gitkeep
+backend/app/mu-plugins/*/
+backend/app/upgrade
+backend/app/uploads/*
+!backend/app/uploads/.gitkeep
+backend/app/cache/*
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# WordPress
+backend/wp
+backend/.htaccess
 
-# testing
-/coverage
+# Logs
+*.log
 
-# next.js
-/.next/
-/out/
+# Dotenv
+.env
+.env.*
+!.env.example
 
-# production
-/build
+# Composer
+/vendor
 
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# local env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# vercel
-.vercel
+# WP-CLI
+wp-cli.local.yml
