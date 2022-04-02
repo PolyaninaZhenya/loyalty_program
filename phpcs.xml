@@ -9,9 +9,10 @@
   <arg name="extensions" value="php"/>
 
   <!-- Ignore WordPress and Composer dependencies -->
-  <exclude-pattern>web/wp</exclude-pattern>
+  <exclude-pattern>backend/wp</exclude-pattern>
+  <exclude-pattern>frontend/</exclude-pattern>
   <exclude-pattern>vendor/</exclude-pattern>
-  <exclude-pattern>web/app/plugins</exclude-pattern>
+  <exclude-pattern>backend/app/plugins</exclude-pattern>
 
   <!-- Show colors in console -->
   <arg value="-colors"/>

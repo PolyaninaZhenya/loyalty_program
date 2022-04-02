@@ -1,49 +1,38 @@
 import {useAuth} from "../context/auth";
 import {useRouter} from "next/router";
 import Grid from "@mui/material/Grid";
-import CatalogItem from "../components/Catalog/CatalogItem/CatalogItem";
 import backend from "../backend/clientWp";
 import {useEffect, useState} from "react";
+import CatalogListAccount from "../components/Catalog/CatalogListAccount";
+import axios from "axios";
 
 const Account = ({posts}) => {
     const {user, login, logout} = useAuth();
     const router = useRouter()
     const [myPosts, setMyPosts] = useState()
 
-    const getImage = async (id) => {
-        let buffer = await fetch(`http://fine02r4.beget.tech/wp-json/wp/v2/media?parent=${id}`)
-        return await buffer.json()
-    }
-
-
     useEffect(() => {
-        if (user ) {
-            const filterPosts = posts.filter((post) => {
-                if (post.acf.users) {
-                    return !!post.acf.users.find((item) => item.uid === user.uid);
-                }
-                return false;
-            })
-            if (filterPosts !== myPosts) {
-                setMyPosts(filterPosts)
-            }
-        }
-    })
 
+        if (user) {
+            const userPosts = posts.filter((post) => {
+                return post.acf?.users?.find((userFind) => {
+                    return user.uid === userFind.uid
+                })
+            })
+            setMyPosts(userPosts)
+        }
+    }, [user])
 
     return (
         <div>
             <div className={'body-pallet'}>
-                <h2>Личный кабинет</h2>
-                <Grid container spacing={3}>
+                <h2 className={'mb-32'}>Личный кабинет</h2>
+                <div>
                     {
-                        myPosts?.map((post) => (
-                            <Grid item xs={12} lg={4} key={post.id}>
-                                <CatalogItem post={post} image={getImage(post.id)}/>
-                            </Grid>
-                        ))
+                        myPosts ? (<CatalogListAccount posts={myPosts} className={'mv-32'}/>) :
+                        (<div>Здесь пока ничего нет</div>)
                     }
-                </Grid>
+                </div>
             </div>
         </div>
     );
