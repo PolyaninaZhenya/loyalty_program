@@ -35,7 +35,7 @@ const CatalogListAccount = (props) => {
 
                 {
                     posts && posts?.map((post) => (
-                        <Grid item xs={12} md={6} lg={4}>
+                        <Grid item xs={12} md={6} lg={4} key={post.id}>
                             <CatalogItem post={post} image={getImage(post.id)}/>
                         </Grid>
                         )

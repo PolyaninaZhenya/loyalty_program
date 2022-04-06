@@ -5,19 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0851f3ab-76eb-4f5e-8d37-5a6604cac68a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/components/Catalog/CatalogListAccount.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/api/_index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/api/get_vendor.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/_index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-card.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-example.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-program.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-vendor.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/Catalog/CatalogListAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Catalog/CatalogListAccount.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/pages/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/account.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/sw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/workbox-75794ccf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/phpcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/sw.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/workbox-d1b0e804.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/workbox-d1b0e804.js.map" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -58,14 +69,19 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/backend/app/themes/ommo/post-type" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\OpenServer\domains\ommo.loc\backend\app\themes\ommo\post-type" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\OpenServer\domains\ommo.loc\frontend\components\Catalog" />
     </key>
@@ -78,7 +94,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1648893471601</updated>
-      <workItem from="1648893474571" duration="3485000" />
+      <workItem from="1648893474571" duration="5456000" />
+      <workItem from="1649093380656" duration="80000" />
+      <workItem from="1649262370645" duration="6639000" />
     </task>
     <servers />
   </component>
@@ -95,5 +113,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
