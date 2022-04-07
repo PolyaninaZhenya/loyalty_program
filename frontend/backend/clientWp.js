@@ -1,12 +1,11 @@
 import WPAPI from 'wpapi';
 
 const backend = new WPAPI({
-    endpoint: 'http://fine02r4.beget.tech/wp-json'
+    endpoint: 'http://admin.ommo.loc/wp-json'
 });
 
-backend.programs = backend.registerRoute( 'wp/v2', '/programs/(?P<id>)' );
-backend.catPrograms = backend.registerRoute( 'wp/v2', '/cat_programs/(?P<id>)', {
-    params: [ 'post', 'term' ]
-} );
+backend.programs = backend.registerRoute( 'wp/v2', '/program/(?P<id>)' );
+backend.card = backend.registerRoute( 'wp/v2', '/card/(?P<id>)' );
+
 
 export default backend;

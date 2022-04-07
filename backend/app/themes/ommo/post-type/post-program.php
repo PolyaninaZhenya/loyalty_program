@@ -80,7 +80,7 @@ function register_post_types_program()
         // 'show_in_nav_menus'   => null,                    // зависит от public
         'show_in_menu'        => null,                             // показывать ли в меню адмнки
         // 'show_in_admin_bar'   => null,                    // зависит от show_in_menu
-        'show_in_rest'        => false,                            // Включаем поддержку Gutenberg
+        'show_in_rest'        => true,                            // Включаем поддержку Gutenberg
         'rest_base'           => 'program',               // $post_type. C WP 4.7
         'menu_position'       => null,
         'menu_icon'           => 'dashicons-format-aside',
@@ -91,6 +91,7 @@ function register_post_types_program()
         'supports'            => [
             'title',
             'editor',
+            'thumbnail',
         ],
         // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
         'taxonomies'          => ['cat_program'],

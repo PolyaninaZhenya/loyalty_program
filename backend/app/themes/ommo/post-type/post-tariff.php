@@ -1,12 +1,12 @@
 <?php
 /**
- * Регистрация новой таксономии card
+ * Регистрация новой таксономии tariff
  */
-add_action('init', 'create_taxonomy_card');
-function create_taxonomy_card()
+//add_action('init', 'create_taxonomy_tariff');
+function create_taxonomy_tariff()
 {
     // список параметров: wp-kama.ru/function/get_taxonomy_labels
-    register_taxonomy('cat_card', ['card'], [
+    register_taxonomy('cat_tariff', ['tariff'], [
         'label'               => '', // определяется параметром $labels->name
         'labels'              => [
             'name'              => __('Категории', 'dwr-theme'),
@@ -20,7 +20,7 @@ function create_taxonomy_card()
             'update_item'       => __('Обновить', 'dwr-theme'),
             'add_new_item'      => __('Добавить категорию', 'dwr-theme'),
             'new_item_name'     => __('Новое имя категории', 'dwr-theme'),
-            'menu_name'         => __('Типы Карточки', 'dwr-theme'),
+            'menu_name'         => __('Типы программ', 'dwr-theme'),
         ],
         'description'         => '', // описание таксономии
         'public'              => true,
@@ -40,8 +40,8 @@ function create_taxonomy_card()
         // авто-создание колонки таксы в таблице ассоциированного типа записи. (с версии 3.5)
         'show_in_rest'        => true, // добавить в REST API
         'show_in_graphql'     => true,
-        'graphql_single_name' => 'cat_card',
-        'graphql_plural_name' => 'cat_cards',
+        'graphql_single_name' => 'cat_tariff',
+        'graphql_plural_name' => 'cat_tariffs',
         'rest_base'           => null, // $taxonomy
         // '_builtin'              => false,
         //'update_count_callback' => '_update_post_term_count',
@@ -50,27 +50,26 @@ function create_taxonomy_card()
 
 
 /**
- * Регистрация нового типа поста card
+ * Регистрация нового типа поста tariff
  */
-add_action('init', 'register_post_types_card');
-function register_post_types_card()
+add_action('init', 'register_post_types_tariff');
+function register_post_types_tariff()
 {
-    register_post_type('card', [
+    register_post_type('tariff', [
         'label'               => null,
         'labels'              => [
-            'name'               => __('Карта', 'dwr-theme'),      // основное название для типа записи
-            'singular_name'      => __('Карта', 'dwr-theme'),                  // название для одной записи этого типа
-            'add_new'            => __('Добавить Карту', 'dwr-theme'),         // для добавления новой записи
-            'add_new_item'       => __('Добавление карты', 'dwr-theme'),
-            // заголовка у вновь создаваемой записи в админ-панели.
-            'edit_item'          => __('Редактирование карты', 'dwr-theme'),   // для редактирования типа записи
-            'new_item'           => __('Новая карта', 'dwr-theme'),            // текст новой записи
-            'view_item'          => __('Смотреть карту', 'dwr-theme'),         // для просмотра записи этого типа.
-            'search_items'       => __('Искать карту', 'dwr-theme'),           // для поиска по этим типам записи
+            'name'               => __('Тариф', 'dwr-theme'),      // основное название для типа записи
+            'singular_name'      => __('Тариф', 'dwr-theme'),                  // название для одной записи этого типа
+            'add_new'            => __('Добавить Тариф', 'dwr-theme'),         // для добавления новой записи
+            'add_new_item'       => __('Добавление Тарифа', 'dwr-theme'),
+            'edit_item'          => __('Редактирование Тарифа', 'dwr-theme'),   // для редактирования типа записи
+            'new_item'           => __('Новый тариф', 'dwr-theme'),            // текст новой записи
+            'view_item'          => __('Смотреть тариф', 'dwr-theme'),         // для просмотра записи этого типа.
+            'search_items'       => __('Искать тариф', 'dwr-theme'),           // для поиска по этим типам записи
             'not_found'          => __('Не найдено', 'dwr-theme'),// если в результате поиска ничего не было найдено
             'not_found_in_trash' => __('Не найдено в корзине', 'dwr-theme'),  // если не было найдено в корзине
             'parent_item_colon'  => __('', 'dwr-theme'),                      // для родителей (у древовидных типов)
-            'menu_name'          => __('Карточки', 'dwr-theme'),      // название меню
+            'menu_name'          => __('Тарифы', 'dwr-theme'),      // название меню
         ],
         'description'         => '',
         'public'              => true,
@@ -81,7 +80,7 @@ function register_post_types_card()
         'show_in_menu'        => null,                             // показывать ли в меню адмнки
         // 'show_in_admin_bar'   => null,                    // зависит от show_in_menu
         'show_in_rest'        => true,                            // Включаем поддержку Gutenberg
-        'rest_base'           => 'card',               // $post_type. C WP 4.7
+        'rest_base'           => 'tariff',               // $post_type. C WP 4.7
         'menu_position'       => null,
         'menu_icon'           => 'dashicons-images-alt',
         //'capability_type'   => 'post',
@@ -91,15 +90,14 @@ function register_post_types_card()
         'supports'            => [
             'title',
             'editor',
-            'thumbnail',
         ],
         // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
-        'taxonomies'          => ['cat_card'],
+        'taxonomies'          => ['cat_tariff'],
         'has_archive'         => false,
         'rewrite'             => true,
         'query_var'           => true,
         'show_in_graphql'     => true,
-        'graphql_single_name' => 'card',
-        'graphql_plural_name' => 'cards',
+        'graphql_single_name' => 'tariff',
+        'graphql_plural_name' => 'tariffs',
     ]);
 }

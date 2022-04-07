@@ -4,7 +4,6 @@ import style from "./cataloglist.module.scss"
 import CatalogItem from "./CatalogItem/CatalogItem";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import axios from 'axios'
 
 const CatalogList = (props) => {
 
@@ -23,11 +22,6 @@ const CatalogList = (props) => {
         'title',
         style.title
     )
-
-    const getImage = async (id) => {
-        let buffer = await fetch(`http://fine02r4.beget.tech/wp-json/wp/v2/media?parent=${id}`)
-        return await buffer.json()
-    }
 
     return (
         <>
@@ -55,7 +49,7 @@ const CatalogList = (props) => {
                 {
                     posts && posts?.map((post) => (
                             <SwiperSlide key={post.id}>
-                                <CatalogItem post={post} image={getImage(post.id)}/>
+                                <CatalogItem post={post}/>
                             </SwiperSlide>
                         )
                     )

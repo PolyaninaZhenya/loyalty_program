@@ -5,23 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0851f3ab-76eb-4f5e-8d37-5a6604cac68a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/api/_index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/api/get_vendor.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/_index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-card.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-example.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-program.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-vendor.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/api/get_tarif.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-tariff.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/themes/ommo/api/_index.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/themes/ommo/api/_index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/themes/ommo/api/get_vendor.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/themes/ommo/api/get_vendor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/themes/ommo/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/themes/ommo/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/_index.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/_index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-card.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-card.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-program.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-program.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/Catalog/CatalogListAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Catalog/CatalogListAccount.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/account.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/backend/clientWp.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/backend/clientWp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/Catalog/CatalogItem/CatalogItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Catalog/CatalogItem/CatalogItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/Catalog/CatalogList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Catalog/CatalogList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/catalog/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/catalog/[id].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/catalog/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/catalog/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/sw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/sw.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/workbox-d1b0e804.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/workbox-d1b0e804.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/workbox-75794ccf.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +84,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\OpenServer\domains\ommo.loc\backend\app\themes\ommo\post-type" />
+      <recent name="D:\OpenServer\domains\ommo.loc\backend\app\themes\ommo\api" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\OpenServer\domains\ommo.loc\frontend\components\Catalog" />
@@ -96,7 +100,8 @@
       <updated>1648893471601</updated>
       <workItem from="1648893474571" duration="5456000" />
       <workItem from="1649093380656" duration="80000" />
-      <workItem from="1649262370645" duration="6639000" />
+      <workItem from="1649262370645" duration="6952000" />
+      <workItem from="1649349040020" duration="5123000" />
     </task>
     <servers />
   </component>

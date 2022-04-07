@@ -1,6 +1,7 @@
 import Grid from "@mui/material/Grid";
 import style from "../../components/Sections/SectionAbout/SectionAbout.module.scss";
 import CatalogItem from "../../components/Catalog/CatalogItem/CatalogItem";
+import backend from "../../backend/clientWp";
 
 export default function Catalog({posts}) {
 
@@ -28,8 +29,7 @@ export default function Catalog({posts}) {
 }
 
 export async function getStaticProps(context) {
-    const data = await fetch('http://fine02r4.beget.tech/wp-json/wp/v2/programs')
-    const posts = await data.json()
+    const posts = await backend.card()
 
     return {
         props: {

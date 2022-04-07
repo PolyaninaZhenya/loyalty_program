@@ -1,2 +1,2 @@
 <?php
-//require_once 'get_vendor.php';
+require_once 'get_vendor.php';

@@ -3,17 +3,14 @@ import {useState} from "react";
 import Skeleton from '@mui/material/Skeleton';
 import Link from "next/link"
 
-const CatalogItem = ({post, image}) => {
-    const [dataImg, setDataImg] = useState()
-    image.then(res => setDataImg(res))
-
+const CatalogItem = ({post}) => {
     return (
         <div className={style.container}>
             <Link href={`/catalog/${post.id}`}>
                 <a>
                 {
-                    dataImg ? (
-                        <div className={style.wrapper} style={{backgroundImage: `url(${dataImg[0].media_details.sizes.medium.source_url})`}}>
+                    post.acf.main_image ? (
+                        <div className={style.wrapper} style={{backgroundImage: `url(${post.acf.main_image.sizes.medium})`}}>
                             <span dangerouslySetInnerHTML={{__html: post.title.rendered}} className={style.title}/>
                         </div>
                     ) : (
