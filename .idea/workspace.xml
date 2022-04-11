@@ -5,26 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0851f3ab-76eb-4f5e-8d37-5a6604cac68a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/api/get_tarif.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-tariff.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/api/add_user_for_card.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/themes/ommo/api/_index.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/themes/ommo/api/_index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/themes/ommo/api/get_vendor.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/themes/ommo/api/get_vendor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/themes/ommo/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/themes/ommo/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/_index.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/_index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-card.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-card.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-program.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/themes/ommo/post-type/post-program.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/backend/clientWp.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/backend/clientWp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/Catalog/CatalogItem/CatalogItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Catalog/CatalogItem/CatalogItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/Catalog/CatalogList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Catalog/CatalogList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/pages/catalog/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/catalog/[id].js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/catalog/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/catalog/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/sw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/workbox-75794ccf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/sw.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/sw.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/scss/typograph.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/scss/typograph.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/scss/ui/button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/scss/ui/button.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +69,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2021.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -101,7 +92,8 @@
       <workItem from="1648893474571" duration="5456000" />
       <workItem from="1649093380656" duration="80000" />
       <workItem from="1649262370645" duration="6952000" />
-      <workItem from="1649349040020" duration="5123000" />
+      <workItem from="1649349040020" duration="5261000" />
+      <workItem from="1649694756824" duration="7523000" />
     </task>
     <servers />
   </component>

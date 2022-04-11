@@ -4,19 +4,62 @@ import Image from 'next/image'
 import {useAuth} from "../../context/auth";
 import Barcode from 'react-jsbarcode';
 import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
+import Qs from 'qs'
+import axios from 'axios'
 
 export default function CatalogSingle({post}) {
     const {user} = useAuth()
-    const findUser = () => {
-        // const userFind = post.acf.users.find((item) => {
-        //     console.log(item)
-        //     return item.uid === user.uid;
-        // })
-        //
-        // console.log(userFind)
+    const [userCard, setUserCard] = useState({})
+
+    useEffect(() => {
+        if (post.acf.user && user) {
+            const userFind = post.acf.user.find((item) => {
+                return item.uid === user.uid;
+            })
+            setUserCard(userFind)
+        }
+    })
+
+    const getNewData = async () => {
+        const postNew = await backend.card().id(post.id)
+
+        if (postNew.acf.user && user) {
+            const userFind = postNew.acf.user.find((item) => {
+                return item.uid === user.uid;
+            })
+            setUserCard(userFind)
+        } else {
+            setUserCard(null)
+        }
     }
 
-    findUser()
+    const addUser = async () => {
+        if (user) {
+            const params = {
+                postId: post.id,
+                userId: user.uid
+            }
+            const response = await axios.get('http://admin.ommo.loc/wp-json/ommo/v2/add_user_for_card', {
+                params
+            })
+            await getNewData()
+        }
+    }
+
+    const deleteUser = async () => {
+        if (user) {
+            const params = {
+                postId: post.id,
+                userId: user.uid
+            }
+            const response = await axios.get('http://admin.ommo.loc/wp-json/ommo/v2/delete_user_for_card', {
+                params
+            })
+
+            await getNewData()
+        }
+    }
 
     return (
         <>
@@ -28,16 +71,33 @@ export default function CatalogSingle({post}) {
                         </div>
                     </Grid>
                     <Grid item xs={12} lg={8}>
-                        <h1 dangerouslySetInnerHTML={{__html: post.title.rendered}}/>
+                        <h1 dangerouslySetInnerHTML={{__html: post.title.rendered}}/><br/>
+                        {
+                            !userCard?.number ? (
+                            <button
+                                className={'my-button__primary'}
+                                onClick={() => addUser()}
+                            >
+                                Добавить себе
+                            </button>) :
+                                (
+                                    <button
+                                        className={'my-button__primary'}
+                                        onClick={() => deleteUser()}
+                                    >
+                                        Удалить карточку
+                                    </button>
+                                )
+                        }
                     </Grid>
                 </Grid>
             </div>
-            {/*{*/}
-            {/*    userCard &&*/}
-            {/*    <div className={'body-pallet mv-32 barcode-block'}>*/}
-            {/*        <Barcode value={userCard.card_id}/>*/}
-            {/*    </div>*/}
-            {/*}*/}
+            {
+                userCard?.number &&
+                <div className={'body-pallet mv-32 barcode-block'}>
+                    <Barcode value={userCard.number} options={{format: 'code128'}}/>
+                </div>
+            }
             {
                 post.content.rendered && <div className={'body-pallet mv-32'}>
                     <div>

@@ -1,9 +1,11 @@
 .my-button {
   border-radius: 50px;
   padding: 18px 36px;
+  cursor: pointer;
 
   &__primary {
     @extend .my-button;
+    color: #fff;
     font-weight: 800;
     background-color: var(--color-primary);
 
