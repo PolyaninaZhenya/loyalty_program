@@ -13,6 +13,8 @@ const CatalogListAccount = (props) => {
         posts
     } = props
 
+    console.log(posts)
+
     const mainClasses = cl(
         'body-pallet',
         style.container,
@@ -32,11 +34,10 @@ const CatalogListAccount = (props) => {
     return (
         <>
             <Grid container spacing={4}>
-
                 {
-                    posts && posts?.map((post) => (
-                        <Grid item xs={12} md={6} lg={4} key={post.id}>
-                            <CatalogItem post={post} image={getImage(post.id)}/>
+                    posts?.map((post) => (
+                        <Grid item xs={12} md={6} lg={4} key={post.ID}>
+                            <CatalogItem post={post} image={getImage(post.ID)}/>
                         </Grid>
                         )
                     )

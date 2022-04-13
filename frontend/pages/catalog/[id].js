@@ -13,13 +13,20 @@ export default function CatalogSingle({post}) {
     const [userCard, setUserCard] = useState({})
 
     useEffect(() => {
-        if (post.acf.user && user) {
-            const userFind = post.acf.user.find((item) => {
+        if (user && post.acf.user) {
+            fetch(`http://admin.ommo.loc/wp-json/ommo/v2/get_vendor?id=${user.uid}`)
+                .then(response => response.json())
+                .then(response => {
+                    console.log(response)
+                })
+
+            const userFind = post.acf.user?.find((item) => {
                 return item.uid === user.uid;
             })
+
             setUserCard(userFind)
         }
-    })
+    }, [user, post.acf.user])
 
     const getNewData = async () => {
         const postNew = await backend.card().id(post.id)
@@ -74,12 +81,12 @@ export default function CatalogSingle({post}) {
                         <h1 dangerouslySetInnerHTML={{__html: post.title.rendered}}/><br/>
                         {
                             !userCard?.number ? (
-                            <button
-                                className={'my-button__primary'}
-                                onClick={() => addUser()}
-                            >
-                                Добавить себе
-                            </button>) :
+                                    <button
+                                        className={'my-button__primary'}
+                                        onClick={() => addUser()}
+                                    >
+                                        Добавить себе
+                                    </button>) :
                                 (
                                     <button
                                         className={'my-button__primary'}

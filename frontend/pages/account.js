@@ -1,21 +1,34 @@
 import {useAuth} from "../context/auth";
-import {useRouter} from "next/router";
-import Grid from "@mui/material/Grid";
-import backend from "../backend/clientWp";
 import {useEffect, useState} from "react";
 import CatalogListAccount from "../components/Catalog/CatalogListAccount";
-import axios from "axios";
+import axios from 'axios'
 
 const Account = () => {
+    const {user} = useAuth()
+    const [posts, setPosts] = useState()
+
+    const fetchData = async (user) => {
+        const result = await fetch(`http://admin.ommo.loc/wp-json/ommo/v2/get_user_card?id=${user.uid}`)
+        const data = await result.json()
+        setPosts(data)
+    }
+
+    useEffect(() => {
+        if (user) {
+            fetchData(user)
+        }
+    }, [user])
+
     return (
         <div>
             <div className={'body-pallet'}>
                 <h2 className={'mb-32'}>Личный кабинет</h2>
                 <div>
-                    {/*{*/}
-                    {/*    myPosts ? (<CatalogListAccount posts={myPosts} className={'mv-32'}/>) :*/}
-                    {/*    (<div>Здесь пока ничего нет</div>)*/}
-                    {/*}*/}
+                    {
+                        posts ?
+                            (<CatalogListAccount posts={posts} className={'mv-32'}/>) :
+                            (<div>Здесь пока ничего нет</div>)
+                    }
                 </div>
             </div>
         </div>

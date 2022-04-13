@@ -1,19 +1,19 @@
-import {createContext, FC, useContext, useEffect, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 import {
+    createUserWithEmailAndPassword,
     getAuth,
     GoogleAuthProvider,
-    EmailAuthProvider,
-    User,
-    signInWithPopup,
-    signInWithRedirect,
-    signOut,
     onAuthStateChanged,
-    createUserWithEmailAndPassword,
-    updateProfile,
+    sendPasswordResetEmail,
     signInWithEmailAndPassword,
-    sendPasswordResetEmail
+    signInWithRedirect,
+    onIdTokenChanged,
+    signOut,
+    updateProfile
 } from "firebase/auth";
 import app from "../backend/clientApp"
+import nookies from 'nookies';
+
 
 // Создаем контект авторизации для того что бы не прокидывать пропсами информацию  о пользователе
 const AuthContext = createContext({
@@ -36,16 +36,27 @@ const AuthProvider = ({ children }) => {
     // Подвешиваем слушателя изменения пользователя при входе или выходе
     useEffect(()=> {
         setLoading(true)
-        const unSubscribe = onAuthStateChanged(auth, (user) => {
+        return onIdTokenChanged(auth, async (user) => {
             if (user) {
+                const token = await user.getIdToken();
                 setUser(user)
+                nookies.set(undefined, 'token', token, { path: '/' });
             } else {
                 setUser(null)
+                nookies.set(undefined, 'token', '', { path: '/' });
             }
         })
-
-        return unSubscribe
     }, [])
+
+    useEffect(() => {
+        const handle = setInterval(async () => {
+            const user = auth.currentUser;
+            if (user) await user.getIdToken(true);
+        }, 10 * 60 * 1000);
+
+        // clean up setInterval
+        return () => clearInterval(handle);
+    }, []);
 
 
     const register = (email, name, password) => {
@@ -63,7 +74,6 @@ const AuthProvider = ({ children }) => {
     }
 
     const forgotPass = (email) => {
-        //
         return sendPasswordResetEmail(auth, email)
     }
 
@@ -116,4 +126,4 @@ const AuthProvider = ({ children }) => {
 const useAuth = () => useContext(AuthContext)
 
 // экспортируем хук и компонент провайдера
-export {useAuth, AuthProvider}
+export {useAuth, AuthProvider, auth}

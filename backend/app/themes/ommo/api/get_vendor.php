@@ -19,7 +19,7 @@ add_action('rest_api_init', function () {
 });
 
 // функция обработчик конечной точки (маршрута)
-function get_vendor_by_id(WP_REST_Request $request)
+function get_vendor_by_id(WP_REST_Request $request): array
 {
     $post = get_posts([
         'post_type'  => 'vendor',
@@ -30,7 +30,7 @@ function get_vendor_by_id(WP_REST_Request $request)
     if (empty($post)) {
         return [
             'status'  => '404',
-            'message' => 'Неявляеться организацией'
+            'message' => 'Ничего нет'
         ];
     }
 
@@ -38,6 +38,7 @@ function get_vendor_by_id(WP_REST_Request $request)
     return [
         'id'      => $post[0]->ID,
         'title'   => $post[0]->post_title,
+        'body'    => $post[0],
         'guide'   => $acf,
         'status'  => '200',
         'message' => 'Вы являетесь организацией'
