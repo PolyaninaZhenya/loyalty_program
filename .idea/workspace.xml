@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="0851f3ab-76eb-4f5e-8d37-5a6604cac68a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/pages/newProgram.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/newProgram.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/public/sw.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/sw.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/scss/globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/scss/globals.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,15 +57,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\OpenServer\domains\ommo.loc\backend\app\themes\ommo\post-type" />
@@ -88,7 +91,8 @@
       <workItem from="1649871243010" duration="9468000" />
       <workItem from="1650210164180" duration="4844000" />
       <workItem from="1650386965229" duration="1937000" />
-      <workItem from="1650389296636" duration="2634000" />
+      <workItem from="1650389296636" duration="2851000" />
+      <workItem from="1650648277567" duration="8586000" />
     </task>
     <servers />
   </component>

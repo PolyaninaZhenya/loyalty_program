@@ -9,17 +9,68 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
+import {
+    CSSTransition,
+    TransitionGroup,
+} from 'react-transition-group';
 
 const NewProgram = () => {
-    const [age, setAge] = React.useState('Условие');
-
     const [programName, setProgramName] = useState()
     const [programDesc, setProgramDesc] = useState()
     const [programType, setProgramType] = useState()
 
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    };
+    const [levels, setLevels] = useState([{
+        id: 1,
+        percent: 0,
+        condition: '>',
+        parameter: 'summa',
+        value: 0
+    }
+    ])
+
+    //Изменяем данные уровня
+    const changeLevels = (id, field, value) => {
+        let newData = levels
+        newData.forEach((level) => {
+            if (level.id === id) {
+                level[field] = `${value}`
+            }
+        })
+
+        setLevels([...newData])
+    }
+
+    //Добавляем новый уровень
+    const addLevel = () => {
+        let data
+        if (levels.length) {
+            data = {
+                id: (levels[levels.length - 1].id + 1),
+                percent: 0,
+                condition: '>',
+                parameter: 'summa',
+                value: 0,
+            }
+        } else {
+             data = {
+                id: 0,
+                percent: 0,
+                condition: '>',
+                parameter: 'summa',
+                value: 0,
+            }
+        }
+
+        setLevels(arr => [...arr, data])
+    }
+
+    const removeLevel = (id) => {
+        const newData = levels.filter((item) => {
+            return item.id !== id
+        })
+
+        setLevels(newData)
+    }
 
     const serializeFormData = (form) => {
         const formData = new FormData(form);
@@ -44,6 +95,8 @@ const NewProgram = () => {
         console.log(programName, programDesc, programType)
     }
 
+    console.log(levels)
+
     return (
         <div className={'body-pallet'}>
             <h1>Добавить программу</h1><br/>
@@ -51,7 +104,7 @@ const NewProgram = () => {
                 createProgram(event)
             }}>
                 <Grid container spacing={4}>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={5}>
                         <h4>Описание</h4>
                         <FormGroup>
                             <TextField
@@ -84,67 +137,7 @@ const NewProgram = () => {
                                 onChange={event => setProgramType(event.target.value)}
                             />
                         </FormGroup>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <h4>Уровни</h4>
-                        <FormGroup style={{display: 'flex'}}>
-                            <TextField
-                                id="program_level_percent"
-                                label="%"
-                                variant="standard"
-                                type={'number'}
-                                className={style.input}
-                                style={{maxWidth: '60px'}}
-                            />
-                        </FormGroup>
-                        <FormControl variant="standard" sx={{m: 1, minWidth: 120}}>
-                            <InputLabel id="demo-simple-select-standard-label">Параметр</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-standard-label"
-                                id="demo-simple-select-standard"
-                                value={age}
-                                onChange={handleChange}
-                                label="Условие"
-                            >
-                                <MenuItem value={10}>Сумма сех покупок</MenuItem>
-                                <MenuItem value={20}>Время владения</MenuItem>
-                                <MenuItem value={30}>Сумма покупок в месяц</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <FormControl variant="standard" sx={{m: 1, minWidth: 120}}>
-                            <InputLabel id="demo-simple">Условие</InputLabel>
-                            <Select
-                                labelId="demo-simple"
-                                id="if"
-                                value={age}
-                                onChange={handleChange}
-                                label="Условие"
-                            >
-                                <MenuItem value={10}>Больше</MenuItem>
-                                <MenuItem value={20}>Меньше</MenuItem>
-                                <MenuItem value={30}>Равно</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <FormControl variant="standard" sx={{m: 1, minWidth: 120}}>
-                        <TextField
-                            id="program_level_if_1"
-                            label="Число"
-                            variant="standard"
-                            type={'number'}
-                            className={style.input}
-                            style={{maxWidth: '60px'}}
-                        />
-                        </FormControl>
                         <br/>
-                        <Button variant="contained"
-                                size={'large'}
-                                component="span"
-                                className={style.button}
-                        >
-                            Добавить уровень
-                        </Button>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
                         <h4>Карта</h4><br/>
                         <FormGroup>
                             <TextField
@@ -162,6 +155,83 @@ const NewProgram = () => {
                         </FormGroup>
                         <br/>
                         <Input type={'file'}/>
+                    </Grid>
+                    <Grid item xs={12} md={7}>
+                        <h4>Уровни</h4>
+                        <br/>
+                        <TransitionGroup className="todo-list">
+                        {
+                            levels?.map(item => (
+                                <CSSTransition
+                                    key={item?.id}
+                                    timeout={500}
+                                    classNames="item"
+                                >
+                                <div style={{display: 'flex', gap: '16px', alignItems: 'flex-end', marginBottom: '16px'}}>
+                                    <TextField
+                                        id={`level_percent_${item?.id}`}
+                                        label="% скидки"
+                                        variant="standard"
+                                        type={'number'}
+                                        value={item?.percent}
+                                        className={style.input}
+                                        onChange={event => changeLevels(item?.id, 'percent', event.target.value)}
+                                        style={{maxWidth: '70px'}}
+                                    />
+                                    <FormGroup>
+                                        <Select
+                                            labelId="demo-simple-select-standard-label"
+                                            id={`select-parameter_${item?.id}`}
+                                            value={item?.parameter}
+                                            style={{width: '200px'}}
+                                            onChange={event => changeLevels(item?.id, 'parameter', event.target.value)}
+                                            label="Условие"
+                                        >
+                                            <MenuItem value={'summa'}>Сумма всех покупок</MenuItem>
+                                            <MenuItem value={'time'}>Время владения</MenuItem>
+                                            <MenuItem value={'summa_month'}>Сумма покупок в месяц</MenuItem>
+                                        </Select>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Select
+                                            labelId="demo-simple"
+                                            id="if"
+                                            value={item?.condition}
+                                            onChange={event => changeLevels(item?.id, 'condition', event.target.value)}
+                                            label="Условие"
+                                        >
+                                            <MenuItem value={'>'}>Больше</MenuItem>
+                                            <MenuItem value={'<'}>Меньше</MenuItem>
+                                            <MenuItem value={'='}>Равно</MenuItem>
+                                        </Select>
+                                    </FormGroup>
+                                    <TextField
+                                        id={`level_value_${item?.id}`}
+                                        label="Число"
+                                        variant="standard"
+                                        type={'number'}
+                                        value={item?.value}
+                                        className={style.input}
+                                        onChange={event => changeLevels(item?.id, 'value', event.target.value)}
+                                        style={{maxWidth: '60px'}}
+                                    />
+                                    <span onClick={() => removeLevel(item?.id)} style={{cursor: 'pointer'}}>
+                                        Удалить
+                                    </span>
+                                </div>
+                                </CSSTransition>
+                            ))
+                        }
+                        </TransitionGroup>
+                        <br/>
+                        <Button variant="contained"
+                                size={'large'}
+                                component="span"
+                                className={style.button}
+                                onClick={addLevel}
+                        >
+                            Добавить уровень
+                        </Button>
                     </Grid>
                 </Grid>
                 <br/>
