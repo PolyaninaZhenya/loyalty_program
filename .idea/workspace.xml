@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0851f3ab-76eb-4f5e-8d37-5a6604cac68a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/newProgram.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/newProgram.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/sw.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/sw.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/scss/globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/scss/globals.scss" afterDir="false" />
-    </list>
+    <list default="true" id="0851f3ab-76eb-4f5e-8d37-5a6604cac68a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +85,7 @@
       <workItem from="1650210164180" duration="4844000" />
       <workItem from="1650386965229" duration="1937000" />
       <workItem from="1650389296636" duration="2851000" />
-      <workItem from="1650648277567" duration="8586000" />
+      <workItem from="1650648277567" duration="8678000" />
     </task>
     <servers />
   </component>
