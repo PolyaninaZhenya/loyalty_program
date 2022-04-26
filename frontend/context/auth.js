@@ -7,6 +7,7 @@ import {
     sendPasswordResetEmail,
     signInWithEmailAndPassword,
     signInWithRedirect,
+    signInWithPopup,
     onIdTokenChanged,
     signOut,
     updateProfile
@@ -80,7 +81,7 @@ const AuthProvider = ({ children }) => {
     // Создаем метод входа в приложение
     const login = async () => {
         try {
-            await signInWithRedirect(auth, new GoogleAuthProvider())
+            await signInWithPopup(auth, new GoogleAuthProvider())
         } catch (e) {
             console.error(e)
         }

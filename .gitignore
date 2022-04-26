@@ -3,8 +3,6 @@ backend/app/plugins/*
 !backend/app/plugins/.gitkeep
 backend/app/mu-plugins/*/
 backend/app/upgrade
-backend/app/uploads/*
-!backend/app/uploads/.gitkeep
 backend/app/cache/*
 
 # WordPress

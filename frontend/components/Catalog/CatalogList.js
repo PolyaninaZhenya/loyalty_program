@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, {useRef, useState} from "react";
 import cl from "classname"
 import style from "./cataloglist.module.scss"
 import CatalogItem from "./CatalogItem/CatalogItem";
-import { Swiper, SwiperSlide } from 'swiper/react';
+import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
 
 const CatalogList = (props) => {
@@ -31,6 +31,9 @@ const CatalogList = (props) => {
                     spaceBetween={16}
                     slidesPerView={3.3}
                     longSwipes={true}
+                    mousewheel={
+                        true
+                    }
                     breakpoints={{
                         0: {
                             slidesPerView: 1.5,
@@ -46,14 +49,14 @@ const CatalogList = (props) => {
                         },
                     }}
                 >
-                {
-                    posts && posts?.map((post) => (
-                            <SwiperSlide key={post.id}>
-                                <CatalogItem post={post}/>
-                            </SwiperSlide>
+                    {
+                        posts && posts?.map((post) => (
+                                <SwiperSlide key={post.id}>
+                                    <CatalogItem post={post}/>
+                                </SwiperSlide>
+                            )
                         )
-                    )
-                }
+                    }
                 </Swiper>
             </div>
         </>

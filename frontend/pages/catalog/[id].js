@@ -16,9 +16,6 @@ export default function CatalogSingle({post}) {
         if (user && post.acf.user) {
             fetch(`http://admin.ommo.loc/wp-json/ommo/v2/get_vendor?id=${user.uid}`)
                 .then(response => response.json())
-                .then(response => {
-                    console.log(response)
-                })
 
             const userFind = post.acf.user?.find((item) => {
                 return item.uid === user.uid;
@@ -80,21 +77,19 @@ export default function CatalogSingle({post}) {
                     <Grid item xs={12} lg={8}>
                         <h1 dangerouslySetInnerHTML={{__html: post.title.rendered}}/><br/>
                         {
-                            !userCard?.number ? (
+                            user &&
                                     <button
                                         className={'my-button__primary'}
-                                        onClick={() => addUser()}
+                                        onClick={() => {
+                                            if (!userCard?.number) {
+                                                addUser()
+                                            }else {
+                                                deleteUser()
+                                            }
+                                        }}
                                     >
-                                        Добавить себе
-                                    </button>) :
-                                (
-                                    <button
-                                        className={'my-button__primary'}
-                                        onClick={() => deleteUser()}
-                                    >
-                                        Удалить карточку
+                                        {!userCard?.number ? 'Добавить себе' : 'Удалить'}
                                     </button>
-                                )
                         }
                     </Grid>
                 </Grid>

@@ -9,8 +9,14 @@ const CatalogItem = ({post}) => {
             <Link href={`/catalog/${post?.id ?? post?.ID}`}>
                 <a>
                 {
-                    post.acf.main_image ? (
-                        <div className={style.wrapper} style={{backgroundImage: `url(${post.acf.main_image.sizes.medium})`}}>
+                    post.acf?.main_image ? (
+                        <div className={style.wrapper}
+                             style={{
+                                 backgroundImage: `url(${post.acf.main_image.sizes.medium})`,
+                                 backgroundPosition: 'center'
+                        }}
+
+                        >
                             <span dangerouslySetInnerHTML={{__html: post?.title?.rendered ?? post?.post_title}} className={style.title}/>
                         </div>
                     ) : (

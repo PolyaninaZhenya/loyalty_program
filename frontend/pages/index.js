@@ -6,7 +6,6 @@ import SectionAbout from "../components/Sections/SectionAbout/SectionAbout";
 import backend from "../backend/clientWp";
 
 export default function Home({cards}) {
-    console.log(cards)
     return (
         <>
             <SectionIntro/>

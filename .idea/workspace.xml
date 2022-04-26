@@ -4,7 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0851f3ab-76eb-4f5e-8d37-5a6604cac68a" name="Changes" comment="" />
+    <list default="true" id="0851f3ab-76eb-4f5e-8d37-5a6604cac68a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/app/themes/ommo/api/create_program.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/uploads/2022/04/1004_2-150x150.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/uploads/2022/04/1004_2-300x300.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/uploads/2022/04/1004_2.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/uploads/2022/04/6842fdc83b6b12b3549c314deb0bc74b-150x150.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/uploads/2022/04/6842fdc83b6b12b3549c314deb0bc74b-300x300.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/uploads/2022/04/6842fdc83b6b12b3549c314deb0bc74b-768x768.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/uploads/2022/04/6842fdc83b6b12b3549c314deb0bc74b.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/uploads/2022/04/kant_app_logo-150x150.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/uploads/2022/04/kant_app_logo-300x300.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/uploads/2022/04/kant_app_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/uploads/2022/04/klubnaya-karta-kari-1024x746.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/uploads/2022/04/klubnaya-karta-kari-150x150.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/uploads/2022/04/klubnaya-karta-kari-300x219.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/uploads/2022/04/klubnaya-karta-kari-768x560.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/uploads/2022/04/klubnaya-karta-kari.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/themes/createEmotionCache.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/themes/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/Catalog/CatalogItem/CatalogItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Catalog/CatalogItem/CatalogItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/Catalog/CatalogList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Catalog/CatalogList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/context/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/context/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/catalog/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/catalog/[id].js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/newProgram.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/newProgram.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/sw.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/workbox-d1b0e804.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/workbox-d1b0e804.js.map" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,15 +84,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/OpenServer/domains/ommo.loc",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Program Files (x86)\\JetBrains\\PhpStorm 2022.1\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\OpenServer\domains\ommo.loc\backend\app\themes\ommo\post-type" />
@@ -86,6 +126,9 @@
       <workItem from="1650386965229" duration="1937000" />
       <workItem from="1650389296636" duration="2851000" />
       <workItem from="1650648277567" duration="8678000" />
+      <workItem from="1650992748060" duration="2822000" />
+      <workItem from="1650995820090" duration="1799000" />
+      <workItem from="1650997889355" duration="491000" />
     </task>
     <servers />
   </component>
