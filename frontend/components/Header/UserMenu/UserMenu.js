@@ -10,6 +10,7 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
 import Link from 'next/link'
+import AddIcon from '@mui/icons-material/Add';
 
 const UserMenu = (props) => {
     const {user, logout} = props
@@ -82,6 +83,16 @@ const UserMenu = (props) => {
                                 <PersonIcon/>
                             </ListItemIcon>
                             Личный кабинет
+                        </a>
+                    </Link>
+                </MenuItem>
+                <MenuItem>
+                    <Link href={'/newProgram'}>
+                        <a style={{display: 'inline-flex'}}>
+                            <ListItemIcon>
+                                <AddIcon/>
+                            </ListItemIcon>
+                            Добавить программу
                         </a>
                     </Link>
                 </MenuItem>

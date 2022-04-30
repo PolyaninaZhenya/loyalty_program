@@ -71,7 +71,7 @@ export default function CatalogSingle({post}) {
                 <Grid className={'catalog-single'} container spacing={2}>
                     <Grid item xs={12} lg={4}>
                         <div className={'card'}>
-                            <Image src={post.acf?.main_image?.url} layout={'fill'}/>
+                            <Image src={post.acf?.main_image?.url ?? '/empty.png'} layout={'fill'}/>
                         </div>
                     </Grid>
                     <Grid item xs={12} lg={8}>

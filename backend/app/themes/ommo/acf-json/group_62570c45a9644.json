@@ -5,7 +5,7 @@
         {
             "key": "field_62570c5304cbe",
             "label": "ID",
-            "name": "vendorId",
+            "name": "vendor_id",
             "type": "post_object",
             "instructions": "",
             "required": 0,
@@ -43,5 +43,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1649873176
+    "modified": 1651328298
 }

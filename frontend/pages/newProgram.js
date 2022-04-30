@@ -1,7 +1,7 @@
 import TextField from "@mui/material/TextField";
 import style from "../components/FormLogin/FormLogin.module.scss";
 import FormGroup from "@mui/material/FormGroup";
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import Button from "@mui/material/Button";
 import {Grid} from "@mui/material";
 import Select from '@mui/material/Select';
@@ -14,11 +14,18 @@ import {
     TransitionGroup,
 } from 'react-transition-group';
 import {Label} from "@mui/icons-material";
+import axios from "axios";
+import {useAuth} from "../context/auth";
 
 const NewProgram = () => {
     const [programName, setProgramName] = useState()
     const [programDesc, setProgramDesc] = useState()
     const [programType, setProgramType] = useState()
+    const [cardName, setCardName] = useState()
+    const [cardDesc, setCardDesc] = useState()
+    const [files, setFiles] = useState([])
+    const fileInput = useRef()
+    const {user} = useAuth()
 
     const [levels, setLevels] = useState([{
         id: 1,
@@ -30,11 +37,11 @@ const NewProgram = () => {
     ])
     const [programTypes, setProgramTypes] = useState([
         {
-            id: 0,
+            id: 5,
             value: 'Бонусная'
         },
         {
-            id: 1,
+            id: 6,
             value: 'Скидочная'
         },
     ])
@@ -76,6 +83,11 @@ const NewProgram = () => {
         setLevels(arr => [...arr, data])
     }
 
+    const handleFileSelected = (e) => {
+        const newFiles = Array.from(e.target.files)
+        setFiles([...newFiles])
+    }
+
     const removeLevel = (id) => {
         const newData = levels.filter((item) => {
             return item.id !== id
@@ -102,16 +114,34 @@ const NewProgram = () => {
         return serialized;
     }
 
-    const createProgram = async (event) => {
-        event.preventDefault()
+    const handlerSubmitForm = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await axios.post('http://admin.ommo.loc/wp-json/ommo/v2/create_program', {
+                params: {
+                    cardName,
+                    cardDesc,
+                    programType,
+                    programDesc,
+                    programName,
+                    levels,
+                    user,
+                    files
+                }
+            })
+
+            console.log(response)
+        } catch (error) {
+            console.log(error.response)
+        }
+
     }
 
     return (
         <div className={'body-pallet'}>
             <h1>Добавить программу</h1><br/>
-            <form onSubmit={(event) => {
-                createProgram(event)
-            }}>
+            <form onSubmit={handlerSubmitForm}>
                 <Grid container spacing={4}>
                     <Grid item xs={12} md={5}>
                         <h4>Описание</h4>
@@ -148,9 +178,10 @@ const NewProgram = () => {
                                     id={`program_type`}
                                     name={`program_type`}
                                     label="Условие"
+                                    onChange={e => setProgramType(e.target.value)}
                                 >
                                     {programTypes.map((item) => (
-                                        <MenuItem value={item.value} key={item.id}>
+                                        <MenuItem value={item.id} key={item.id}>
                                             {item.value}
                                         </MenuItem>
                                     ))}
@@ -166,16 +197,20 @@ const NewProgram = () => {
                                 label="Название карты"
                                 variant="standard"
                                 className={style.input}
+                                value={cardName}
+                                onChange={e => setCardName(e.target.value)}
                             /><br/>
                             <TextField
                                 id="program_card_desc"
                                 label="Описание"
                                 variant="standard"
                                 className={style.input}
+                                value={cardDesc}
+                                onChange={e => setCardDesc(e.target.value)}
                             />
                         </FormGroup>
                         <br/>
-                        <Input type={'file'}/>
+                        <Input type={'file'} ref={fileInput} onLoad={handleFileSelected}/>
                     </Grid>
                     <Grid item xs={12} md={7}>
                         <h4>Уровни</h4>

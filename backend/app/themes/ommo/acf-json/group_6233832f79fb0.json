@@ -15,7 +15,6 @@
                 "class": "",
                 "id": ""
             },
-            "acfe_permissions": "",
             "post_type": [
                 "vendor"
             ],
@@ -23,13 +22,6 @@
             "allow_null": 0,
             "multiple": 0,
             "return_format": "id",
-            "save_custom": 0,
-            "save_post_status": "publish",
-            "acfe_bidirectional": {
-                "acfe_bidirectional_enabled": "0"
-            },
-            "acfe_settings": "",
-            "acfe_validate": "",
             "ui": 1
         },
         {
@@ -137,21 +129,11 @@
                 "class": "",
                 "id": ""
             },
-            "acfe_permissions": "",
-            "post_type": [
-                "card"
-            ],
+            "post_type": "",
             "taxonomy": "",
             "allow_null": 0,
             "multiple": 0,
-            "return_format": "object",
-            "save_custom": 0,
-            "save_post_status": "publish",
-            "acfe_bidirectional": {
-                "acfe_bidirectional_enabled": "0"
-            },
-            "acfe_settings": "",
-            "acfe_validate": "",
+            "return_format": "id",
             "ui": 1
         }
     ],
@@ -173,13 +155,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "acfe_display_title": "",
-    "acfe_autosync": [
-        "json"
-    ],
-    "acfe_permissions": "",
-    "acfe_form": 1,
-    "acfe_meta": "",
-    "acfe_note": "",
-    "modified": 1649269714
+    "modified": 1651328593
 }

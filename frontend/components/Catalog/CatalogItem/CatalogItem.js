@@ -9,10 +9,10 @@ const CatalogItem = ({post}) => {
             <Link href={`/catalog/${post?.id ?? post?.ID}`}>
                 <a>
                 {
-                    post.acf?.main_image ? (
+                    post ? (
                         <div className={style.wrapper}
                              style={{
-                                 backgroundImage: `url(${post.acf.main_image.sizes.medium})`,
+                                 backgroundImage: `url(${post.acf.main_image?.sizes?.medium ?? '/empty.png'})`,
                                  backgroundPosition: 'center'
                         }}
 
