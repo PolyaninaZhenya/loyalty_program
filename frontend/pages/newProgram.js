@@ -127,8 +127,12 @@ const NewProgram = () => {
                     programName,
                     levels,
                     user,
-                    files
+                    file: fileInput?.current?.files[0]
                 }
+            }, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
             })
 
             console.log(response)

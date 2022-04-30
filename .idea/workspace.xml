@@ -6,16 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0851f3ab-76eb-4f5e-8d37-5a6604cac68a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/themes/ommo/acf-json/group_6233832f79fb0.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/themes/ommo/acf-json/group_6233832f79fb0.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/themes/ommo/acf-json/group_62570c45a9644.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/themes/ommo/acf-json/group_62570c45a9644.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/themes/ommo/api/_index.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/themes/ommo/api/_index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/themes/ommo/api/create_program.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/themes/ommo/api/create_program.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/Catalog/CatalogItem/CatalogItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Catalog/CatalogItem/CatalogItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/Header/UserMenu/UserMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Header/UserMenu/UserMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/catalog/[id].js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/catalog/[id].js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/pages/newProgram.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/newProgram.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/sw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/workbox-75794ccf.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +98,7 @@
       <workItem from="1650992748060" duration="2822000" />
       <workItem from="1650995820090" duration="1799000" />
       <workItem from="1650997889355" duration="690000" />
-      <workItem from="1651313469534" duration="14287000" />
+      <workItem from="1651313469534" duration="14607000" />
     </task>
     <servers />
   </component>
