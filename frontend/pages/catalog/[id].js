@@ -12,6 +12,8 @@ export default function CatalogSingle({post}) {
     const {user} = useAuth()
     const [userCard, setUserCard] = useState({})
 
+    const [vendor, setVendor] = useState()
+
     useEffect(() => {
         if (user && post.acf.user) {
             fetch(`http://admin.ommo.loc/wp-json/ommo/v2/get_vendor?id=${user.uid}`)
@@ -20,6 +22,12 @@ export default function CatalogSingle({post}) {
             const userFind = post.acf.user?.find((item) => {
                 return item.uid === user.uid;
             })
+
+            backend.vendor()
+                .id(post?.acf?.vendor_id)
+                .then(response => {
+                    setVendor(response)
+                })
 
             setUserCard(userFind)
         }
@@ -78,18 +86,29 @@ export default function CatalogSingle({post}) {
                         <h1 dangerouslySetInnerHTML={{__html: post.title.rendered}}/><br/>
                         {
                             user &&
-                                    <button
-                                        className={'my-button__primary'}
-                                        onClick={() => {
-                                            if (!userCard?.number) {
-                                                addUser()
-                                            }else {
-                                                deleteUser()
-                                            }
-                                        }}
-                                    >
-                                        {!userCard?.number ? 'Добавить себе' : 'Удалить'}
-                                    </button>
+                            <>
+                                <button
+                                    className={'my-button__primary'}
+                                    onClick={() => {
+                                        if (!userCard?.number) {
+                                            addUser()
+                                        } else {
+                                            deleteUser()
+                                        }
+                                    }}
+                                >
+                                    {!userCard?.number ? 'Добавить себе' : 'Удалить'}
+                                </button>
+                                {
+                                    user.uid === vendor?.acf?.uid ?
+                                        <button
+                                            className={'my-button__primary'}
+                                            style={{marginLeft: '8px'}}
+                                        >
+                                            Редактировать
+                                        </button> : false
+                                }
+                            </>
                         }
                     </Grid>
                 </Grid>
