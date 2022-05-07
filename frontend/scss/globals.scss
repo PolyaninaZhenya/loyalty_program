@@ -44,10 +44,12 @@ body {
 .mb-16 {
   margin-bottom: 16px;
 }
+
 .mv-16 {
   margin-bottom: 16px;
   margin-top: 16px;
 }
+
 .mv-8 {
   margin-top: 8px;
   margin-bottom: 8px;
@@ -85,14 +87,25 @@ body {
 .item-enter {
   opacity: 0;
 }
+
 .item-enter-active {
   opacity: 1;
   transition: opacity 500ms ease-in;
 }
+
 .item-exit {
   opacity: 1;
 }
+
 .item-exit-active {
   opacity: 0;
   transition: opacity 500ms ease-in;
+}
+
+.container-404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 0;
 }

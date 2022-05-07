@@ -17,12 +17,12 @@ import {Label} from "@mui/icons-material";
 import axios from "axios";
 import {useAuth} from "../context/auth";
 
-const NewProgram = () => {
-    const [programName, setProgramName] = useState()
-    const [programDesc, setProgramDesc] = useState()
-    const [programType, setProgramType] = useState()
-    const [cardName, setCardName] = useState()
-    const [cardDesc, setCardDesc] = useState()
+const NewProgram = ({title, data}) => {
+    const [programName, setProgramName] = useState(data?.program?.post_title ?? '')
+    const [programDesc, setProgramDesc] = useState(data?.program?.post_content ?? '')
+    const [programType, setProgramType] = useState(data?.program?.post_content ?? '')
+    const [cardName, setCardName] = useState(data?.card?.post_title ?? '')
+    const [cardDesc, setCardDesc] = useState(data?.card?.post_content ?? '')
     const [files, setFiles] = useState([])
     const fileInput = useRef()
     const {user} = useAuth()
@@ -118,24 +118,26 @@ const NewProgram = () => {
         event.preventDefault();
 
         try {
-            const response = await axios.post('http://admin.ommo.loc/wp-json/ommo/v2/create_program', {
-                params: {
-                    cardName,
-                    cardDesc,
-                    programType,
-                    programDesc,
-                    programName,
-                    levels,
-                    user,
-                    file: fileInput?.current?.files[0]
-                }
-            }, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
-            })
+            if (data) {
 
-            console.log(response)
+            } else {
+                const response = await axios.post('http://admin.ommo.loc/wp-json/ommo/v2/create_program', {
+                    params: {
+                        cardName,
+                        cardDesc,
+                        programType,
+                        programDesc,
+                        programName,
+                        levels,
+                        user,
+                        file: fileInput?.current?.files[0]
+                    }
+                }, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    },
+                })
+            }
         } catch (error) {
             console.log(error.response)
         }
@@ -144,11 +146,14 @@ const NewProgram = () => {
 
     return (
         <div className={'body-pallet'}>
-            <h1>Добавить программу</h1><br/>
+            {
+                title ? <h1>{title}</h1> : <h1>Добавить программу</h1>
+            }
+            <br/>
             <form onSubmit={handlerSubmitForm}>
                 <Grid container spacing={4}>
                     <Grid item xs={12} md={5}>
-                        <h4>Описание</h4>
+                        <h4>Программа</h4><br/>
                         <FormGroup>
                             <TextField
                                 id="program_name"
@@ -306,7 +311,7 @@ const NewProgram = () => {
                         type={'submit'}
                         className={style.button}
                 >
-                    Создать
+                    {data ? 'Сохранить' : 'Создать'}
                 </Button>
             </form>
         </div>

@@ -11,6 +11,7 @@ import axios from 'axios'
 export default function CatalogSingle({post}) {
     const {user} = useAuth()
     const [userCard, setUserCard] = useState({})
+    const router = useRouter()
 
     const [vendor, setVendor] = useState()
 
@@ -73,6 +74,10 @@ export default function CatalogSingle({post}) {
         }
     }
 
+    const editProgram = () => {
+        router.push(`/edit/program/${post.acf?.program_id}`)
+    }
+
     return (
         <>
             <div className={'body-pallet'}>
@@ -104,6 +109,7 @@ export default function CatalogSingle({post}) {
                                         <button
                                             className={'my-button__primary'}
                                             style={{marginLeft: '8px'}}
+                                            onClick={editProgram}
                                         >
                                             Редактировать
                                         </button> : false
