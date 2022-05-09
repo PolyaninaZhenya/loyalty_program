@@ -27,14 +27,14 @@ const NewProgram = ({title, data}) => {
     const fileInput = useRef()
     const {user} = useAuth()
 
-    const [levels, setLevels] = useState([{
+    const [levels, setLevels] = useState(data?.program?.acf?.levels ?? [{
         id: 1,
         percent: 0,
         condition: '>',
         parameter: 'summa',
         value: 0
-    }
-    ])
+    }])
+
     const [programTypes, setProgramTypes] = useState([
         {
             id: 5,
@@ -117,10 +117,37 @@ const NewProgram = ({title, data}) => {
     const handlerSubmitForm = async (event) => {
         event.preventDefault();
 
+        const params = {
+            cardId: data?.card?.ID,
+            cardName,
+            cardDesc,
+            programId: data?.program?.ID,
+            programType,
+            programDesc,
+            programName,
+            levels,
+            user
+        }
+
         try {
             if (data) {
-
+                console.log('Сохраняем', params)
+                const response = await axios.put('http://admin.ommo.loc/wp-json/ommo/v2/edit_program', {
+                    params: {
+                        cardId: data?.card?.ID,
+                        cardName,
+                        cardDesc,
+                        programId: data?.program?.ID,
+                        programType,
+                        programDesc,
+                        programName,
+                        levels,
+                        user
+                    }
+                })
+                console.log(response)
             } else {
+                console.log('Создаем', params)
                 const response = await axios.post('http://admin.ommo.loc/wp-json/ommo/v2/create_program', {
                     params: {
                         cardName,
@@ -129,13 +156,8 @@ const NewProgram = ({title, data}) => {
                         programDesc,
                         programName,
                         levels,
-                        user,
-                        file: fileInput?.current?.files[0]
+                        user
                     }
-                }, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    },
                 })
             }
         } catch (error) {
