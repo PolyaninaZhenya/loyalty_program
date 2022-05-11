@@ -6,7 +6,7 @@ import backend from "../../backend/clientWp";
 export default function Catalog({posts}) {
 
     const getImage = async (id) => {
-        let buffer = await fetch(`http://fine02r4.beget.tech/wp-json/wp/v2/media?parent=${id}`)
+        let buffer = await fetch(`http://admin.ommo.loc/wp-json/wp/v2/media?parent=${id}`)
         return await buffer.json()
     }
 

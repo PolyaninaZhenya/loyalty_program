@@ -8,9 +8,12 @@ const Account = () => {
     const [posts, setPosts] = useState()
 
     const fetchData = async (user) => {
-        const result = await fetch(`http://admin.ommo.loc/wp-json/ommo/v2/get_user_card?id=${user.uid}`)
-        const data = await result.json()
-        setPosts(data)
+        const result = await axios.get(`http://admin.ommo.loc/wp-json/ommo/v2/get_user_card`, {
+            params: {
+                id: user.uid
+            }
+        })
+        setPosts(result.data)
     }
 
     useEffect(() => {

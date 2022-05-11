@@ -83,35 +83,12 @@ const NewProgram = ({title, data}) => {
         setLevels(arr => [...arr, data])
     }
 
-    const handleFileSelected = (e) => {
-        const newFiles = Array.from(e.target.files)
-        setFiles([...newFiles])
-    }
-
     const removeLevel = (id) => {
         const newData = levels.filter((item) => {
             return item.id !== id
         })
 
         setLevels(newData)
-    }
-
-    const serializeFormData = (form) => {
-        const formData = new FormData(form);
-        const serialized = {};
-        formData.forEach((v, k) => {
-            if (serialized[k]) {
-                let ram = serialized[k]
-                if (!Array.isArray(serialized[k])) {
-                    serialized[k] = []
-                    serialized[k].push(ram)
-                }
-                serialized[k].push(v)
-            } else {
-                serialized[k] = v;
-            }
-        });
-        return serialized;
     }
 
     const handlerSubmitForm = async (event) => {
@@ -126,44 +103,39 @@ const NewProgram = ({title, data}) => {
             programDesc,
             programName,
             levels,
+            files,
             user
         }
 
         try {
             if (data) {
-                console.log('Сохраняем', params)
-                const response = await axios.put('http://admin.ommo.loc/wp-json/ommo/v2/edit_program', {
-                    params: {
-                        cardId: data?.card?.ID,
-                        cardName,
-                        cardDesc,
-                        programId: data?.program?.ID,
-                        programType,
-                        programDesc,
-                        programName,
-                        levels,
-                        user
+                const response = await axios.post('http://admin.ommo.loc/wp-json/ommo/v2/edit_program', {
+                    ...params
+                }, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
                     }
                 })
                 console.log(response)
             } else {
-                console.log('Создаем', params)
                 const response = await axios.post('http://admin.ommo.loc/wp-json/ommo/v2/create_program', {
-                    params: {
-                        cardName,
-                        cardDesc,
-                        programType,
-                        programDesc,
-                        programName,
-                        levels,
-                        user
+                    ...params
+                }, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
                     }
                 })
+                console.log(response)
             }
         } catch (error) {
             console.log(error.response)
         }
+    }
 
+    const handleInputFile = () => {
+        if (fileInput.current?.files[0]) {
+            setFiles(fileInput.current.files[0])
+        }
     }
 
     return (
@@ -241,7 +213,7 @@ const NewProgram = ({title, data}) => {
                             />
                         </FormGroup>
                         <br/>
-                        <Input type={'file'} ref={fileInput} onLoad={handleFileSelected}/>
+                        <input type={'file'} ref={fileInput} onChange={handleInputFile}/>
                     </Grid>
                     <Grid item xs={12} md={7}>
                         <h4>Уровни</h4>
@@ -308,8 +280,8 @@ const NewProgram = ({title, data}) => {
                                                 style={{maxWidth: '60px'}}
                                             />
                                             <span onClick={() => removeLevel(item?.id)} style={{cursor: 'pointer'}}>
-                                        Удалить
-                                    </span>
+                                                X
+                                            </span>
                                         </div>
                                     </CSSTransition>
                                 ))

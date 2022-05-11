@@ -1,4 +1,8 @@
 <?php
+require_once ABSPATH . 'wp-admin/includes/media.php';
+require_once ABSPATH . 'wp-admin/includes/file.php';
+require_once ABSPATH . 'wp-admin/includes/image.php';
+
 // создание маршрута
 add_action('rest_api_init', function () {
 
@@ -10,9 +14,12 @@ add_action('rest_api_init', function () {
 
     // параметры конечной точки (маршрута)
     $rout_params = [
-        'methods'             => 'PUT',
+        'methods'             => 'POST',
         'callback'            => 'edit_program',
         'permission_callback' => '__return_true',
+        'headers' => [
+            'Content-Type' => "multipart/form-data;"
+        ],
     ];
 
     register_rest_route($namespace, $rout, $rout_params);
@@ -25,22 +32,22 @@ function edit_program(WP_REST_Request $request)
 
     if (isset($data['params'])) {
         $program_data = [
-            'ID'            => $data['params']['programId'],
+            'ID'            => $data['programId'],
             'post_type'     => 'program',
-            'post_title'    => $data['params']['programName'],
-            'post_content'  => $data['params']['programDesc'],
+            'post_title'    => $data['programName'],
+            'post_content'  => $data['programDesc'],
             'post_status'   => 'publish',
             'post_author'   => 1,
-            'post_category' => [$data['params']['programType']]
+            'post_category' => [$data['programType']]
         ];
         $update_program = wp_update_post($program_data);
-        update_field('levels', $data['params']['levels'], $data['params']['programId']);
+        update_field('levels', $data['levels'], $data['programId']);
 
         $card_data = [
-            'ID'            => $data['params']['cardId'],
+            'ID'            => $data['cardId'],
             'post_type'     => 'card',
-            'post_title'    => $data['params']['cardName'],
-            'post_content'  => $data['params']['cardDesc'],
+            'post_title'    => $data['cardName'],
+            'post_content'  => $data['cardDesc'],
             'post_status'   => 'publish',
             'post_author'   => 1,
         ];

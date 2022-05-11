@@ -24,15 +24,17 @@ export default function CatalogSingle({post}) {
                 return item.uid === user.uid;
             })
 
+            setUserCard(userFind)
+        }
+
+        if (post?.acf?.vendor_id) {
             backend.vendor()
                 .id(post?.acf?.vendor_id)
                 .then(response => {
                     setVendor(response)
                 })
-
-            setUserCard(userFind)
         }
-    }, [user, post.acf.user])
+    }, [])
 
     const getNewData = async () => {
         const postNew = await backend.card().id(post.id)
