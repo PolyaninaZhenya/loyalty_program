@@ -64,13 +64,12 @@ const AuthProvider = ({ children }) => {
         setLoading(true)
         createUserWithEmailAndPassword(auth, email, password)
             .then((res) => {
-                console.log(res)
                 return updateProfile(auth.currentUser, {
                     displayName: name
                 })
             })
-            .then(res => console.log(res))
-            .catch(er => setError(er.message))
+            .then()
+            .catch(er => setError(er))
             .finally(() => setLoading(false))
     }
 
@@ -82,6 +81,7 @@ const AuthProvider = ({ children }) => {
     const login = async () => {
         try {
             await signInWithPopup(auth, new GoogleAuthProvider())
+                .finally(() => setLoading(false))
         } catch (e) {
             console.error(e)
         }
@@ -89,8 +89,9 @@ const AuthProvider = ({ children }) => {
 
     const loginEmail = async (email, password) => {
         setLoading(true)
+        console.log(email, password)
         signInWithEmailAndPassword(auth, email, password)
-            .then(res => console.log(res))
+            // .then(res => console.log(res))
             .catch(er => setError(er.message))
             .finally(() => setLoading(false))
     }

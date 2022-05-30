@@ -16,7 +16,7 @@ const FormRegister = () => {
     const [passwordTrue, setPasswordTrue] = useState('')//Инициализируем переменную состояни поля повторите пароль
     const [passwordEqual, setPasswordEqual] = useState(true)
 
-    const {user, login, logout, register} = useAuth();
+    const {user, login, logout, register, loading, error} = useAuth();
 
     const [userName, setUserName] = useState(null)
     const [userPhone, setUserPhone] = useState(null)
@@ -46,9 +46,13 @@ const FormRegister = () => {
         setUserApply(!userApply)
     }
 
+    console.log(error)
+
     useEffect(() => {
         setPasswordEqual(password !== passwordTrue)
     })
+
+    console.log(error)
 
     const onSubmitForm = (event) => {
         event.preventDefault()

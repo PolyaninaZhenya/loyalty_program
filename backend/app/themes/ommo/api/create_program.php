@@ -60,6 +60,7 @@ function create_program(WP_REST_Request $request)
 
         update_post_meta($program_id, 'card_id', $card_id);
         update_post_meta($card_id, 'vendor_id', $vendors[0]->ID);
+        update_post_meta($card_id, 'program_id', $program_id);
     }
 
     return [

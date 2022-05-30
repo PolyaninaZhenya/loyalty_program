@@ -7,8 +7,6 @@ import {Grid} from "@mui/material";
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Input from '@mui/material/Input';
 import {
     CSSTransition,
     TransitionGroup,
@@ -16,6 +14,7 @@ import {
 import {Label} from "@mui/icons-material";
 import axios from "axios";
 import {useAuth} from "../context/auth";
+import API from "../utils/api";
 
 const NewProgram = ({title, data}) => {
     const [programName, setProgramName] = useState(data?.program?.post_title ?? '')
@@ -109,23 +108,21 @@ const NewProgram = ({title, data}) => {
 
         try {
             if (data) {
-                const response = await axios.post('http://admin.ommo.loc/wp-json/ommo/v2/edit_program', {
+                const response = await API.post('ommo/v2/edit_program', {
                     ...params
                 }, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
                 })
-                console.log(response)
             } else {
-                const response = await axios.post('http://admin.ommo.loc/wp-json/ommo/v2/create_program', {
+                const response = await API.post('ommo/v2/create_program', {
                     ...params
                 }, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
                 })
-                console.log(response)
             }
         } catch (error) {
             console.log(error.response)

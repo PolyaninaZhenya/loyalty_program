@@ -2,13 +2,14 @@ import Grid from "@mui/material/Grid";
 import style from "../../components/Sections/SectionAbout/SectionAbout.module.scss";
 import CatalogItem from "../../components/Catalog/CatalogItem/CatalogItem";
 import backend from "../../backend/clientWp";
+import API from "../../utils/api";
 
 export default function Catalog({posts}) {
 
-    const getImage = async (id) => {
-        let buffer = await fetch(`http://admin.ommo.loc/wp-json/wp/v2/media?parent=${id}`)
-        return await buffer.json()
-    }
+    // const getImage = async (id) => {
+    //     let response = await API.get(`wp/v2/media?parent=${id}`)
+    //     return response.data
+    // }
 
     return (
         <>
@@ -18,7 +19,7 @@ export default function Catalog({posts}) {
                     {
                         posts && posts?.map((post) => (
                             <Grid item xs={12} lg={4} key={post.id}>
-                                <CatalogItem post={post} image={getImage(post.id)}/>
+                                <CatalogItem post={post} />
                             </Grid>
                         ))
                     }

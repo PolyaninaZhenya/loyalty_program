@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import Qs from 'qs'
 import axios from 'axios'
+import API from "../../utils/api";
 
 export default function CatalogSingle({post}) {
     const {user} = useAuth()
@@ -15,10 +16,13 @@ export default function CatalogSingle({post}) {
 
     const [vendor, setVendor] = useState()
 
+    const getVendor = async (id) => {
+        return await API.get(`ommo/v2/get_vendor?id=${id}`)
+    }
+
     useEffect(() => {
         if (user && post.acf.user) {
-            fetch(`http://admin.ommo.loc/wp-json/ommo/v2/get_vendor?id=${user.uid}`)
-                .then(response => response.json())
+            let response = getVendor(user.uid);
 
             const userFind = post.acf.user?.find((item) => {
                 return item.uid === user.uid;
@@ -55,7 +59,7 @@ export default function CatalogSingle({post}) {
                 postId: post.id,
                 userId: user.uid
             }
-            const response = await axios.get('http://admin.ommo.loc/wp-json/ommo/v2/add_user_for_card', {
+            const response = await API.get('ommo/v2/add_user_for_card', {
                 params
             })
             await getNewData()
@@ -68,7 +72,7 @@ export default function CatalogSingle({post}) {
                 postId: post.id,
                 userId: user.uid
             }
-            const response = await axios.get('http://admin.ommo.loc/wp-json/ommo/v2/delete_user_for_card', {
+            const response = await API.get('/ommo/v2/delete_user_for_card', {
                 params
             })
 
@@ -117,6 +121,9 @@ export default function CatalogSingle({post}) {
                                         </button> : false
                                 }
                             </>
+                        }
+                        {
+                            !user && <span>Войдите в систему что бы добавить карту себе</span>
                         }
                     </Grid>
                 </Grid>

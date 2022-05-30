@@ -64,6 +64,11 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files (x86)\\JetBrains\\PhpStorm 2022.1\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
@@ -104,7 +109,13 @@
       <workItem from="1651933718495" duration="1857000" />
       <workItem from="1652099854950" duration="12698000" />
       <workItem from="1652205782084" duration="2489000" />
-      <workItem from="1652287844212" duration="7213000" />
+      <workItem from="1652287844212" duration="7540000" />
+      <workItem from="1652374721413" duration="2847000" />
+      <workItem from="1652610829851" duration="297000" />
+      <workItem from="1653323718616" duration="3141000" />
+      <workItem from="1653408520488" duration="599000" />
+      <workItem from="1653496540717" duration="4744000" />
+      <workItem from="1653931037053" duration="3540000" />
     </task>
     <servers />
   </component>
