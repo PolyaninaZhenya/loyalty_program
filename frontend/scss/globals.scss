@@ -109,3 +109,30 @@ body {
   justify-content: center;
   padding: 64px 0;
 }
+
+.form-gap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.table-cards {
+  margin: 0 -16px;
+
+  th {
+    text-align: left;
+    padding: 4px 16px;
+  }
+
+  td {
+    padding: 4px 16px;
+  }
+
+  &__img {
+    position: relative;
+    width: 100px;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+}

@@ -11,6 +11,7 @@ import Logout from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
 import Link from 'next/link'
 import AddIcon from '@mui/icons-material/Add';
+import AssessmentIcon from '@mui/icons-material/Assessment';
 
 const UserMenu = (props) => {
     const {user, logout} = props
@@ -83,6 +84,16 @@ const UserMenu = (props) => {
                                 <PersonIcon/>
                             </ListItemIcon>
                             Личный кабинет
+                        </a>
+                    </Link>
+                </MenuItem>
+                <MenuItem>
+                    <Link href={'/organization'}>
+                        <a style={{display: 'inline-flex'}}>
+                            <ListItemIcon>
+                                <AssessmentIcon/>
+                            </ListItemIcon>
+                            Кабинет организации
                         </a>
                     </Link>
                 </MenuItem>
