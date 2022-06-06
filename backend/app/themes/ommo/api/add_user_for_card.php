@@ -10,8 +10,8 @@ add_action('rest_api_init', function () {
 
     // параметры конечной точки (маршрута)
     $rout_params = [
-        'methods'             => 'GET',
-        'callback'            => 'add_user_for_card',
+        'methods' => 'GET',
+        'callback' => 'add_user_for_card',
         'permission_callback' => '__return_true',
     ];
 
@@ -19,33 +19,61 @@ add_action('rest_api_init', function () {
 });
 
 // функция обработчик конечной точки (маршрута)
-function add_user_for_card(WP_REST_Request $request)
+function add_user_for_card(WP_REST_Request $request): array
 {
-    $users = get_field('user', $request['postId']);
+    $date = date('dmYhis');
+    $number =  crc32($date . $request['userId']);
 
-    if (is_array($users)) {
-        array_push($users, [
-            'uid'    => $request['userId'],
-            'number' => rand(100000, 999999),
-        ]);
-    } else {
-        $users[0] = [
-            'uid'    => $request['userId'],
-            'number' => rand(100000, 999999)
+    $posts = new WP_Query([
+        'post_type' => 'user_cards',
+        'meta_query' => [
+            'relation' => 'AND',
+            [
+                'key' => 'uid',
+                'value' => $request['userId']
+            ],
+            [
+                'key' => 'card_id',
+                'value' => $request['postId']
+            ],
+        ]
+    ]);
+
+    if ($posts->have_posts()) {
+        return [
+            'status' => 400,
+            'message' => 'У вас уже есть карта'
         ];
     }
 
-    $update = update_field('user', $users, $request['postId']);
+    $data = [
+        'post_title' => $number,
+        'post_type' => 'user_cards',
+        'post_content' => null,
+        'post_status' => 'publish',
+        'post_author' => 1,
+        'post_category' => null,
+    ];
 
-    if ($update) {
+    $newCard = wp_insert_post($data);
+
+    if ($newCard) {
+        update_post_meta($newCard, 'date', $date);
+
+        update_field('number', $number, $newCard);
+        update_field('uid', $request['userId'], $newCard);
+        update_field('scores', 0, $newCard);
+        update_field('level', 0, $newCard);
+        update_field('card_id', $request['postId'], $newCard);
+
         return [
-            'status'  => '200',
-            'value'   => $update,
+            'status' => '200',
+            'value' => $newCard,
             'message' => 'Успешно добавлено'
         ];
     } else {
         return [
-            'status'  => '400',
+            'status' => '400',
             'message' => 'Ошибка'
         ];
     }
@@ -63,8 +91,8 @@ add_action('rest_api_init', function () {
 
     // параметры конечной точки (маршрута)
     $rout_params = [
-        'methods'             => 'GET',
-        'callback'            => 'delete_user_for_card',
+        'methods' => 'GET',
+        'callback' => 'delete_user_for_card',
         'permission_callback' => '__return_true',
     ];
 
@@ -85,4 +113,3 @@ function delete_user_for_card(WP_REST_Request $request): array
 
     return $response;
 }
-

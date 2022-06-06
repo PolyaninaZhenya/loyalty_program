@@ -10,8 +10,8 @@ add_action('rest_api_init', function () {
 
     // параметры конечной точки (маршрута)
     $rout_params = [
-        'methods'             => 'GET',
-        'callback'            => 'get_user_card',
+        'methods' => 'GET',
+        'callback' => 'get_user_card',
         'permission_callback' => '__return_true',
     ];
 
@@ -19,25 +19,45 @@ add_action('rest_api_init', function () {
 });
 
 // функция обработчик конечной точки (маршрута)
-function get_user_card(WP_REST_Request $request): array
+function get_user_card(WP_REST_Request $request)
 {
-    $posts = get_posts([
-        'post_type'  => 'card',
-    ]);
 
-    $myPosts = [];
-
-    foreach ($posts as $key => $post) {
-        $acf = get_fields($post->ID);
-
-        if ($acf['user'] && is_array($acf['user'])) {
-            foreach ($acf['user'] as $user) {
-                if ($user['uid'] == $request['id']) {
-                    $myPosts[] = array_merge($post->to_array(), ['acf' => $acf]);
-                }
-            }
-        }
+    if (empty($request['uid']) || empty($request['cardId'])) {
+        return [
+            'status' => 400,
+            'message' => 'Не переданы все нужные параметры uid и cardId'
+        ];
     }
 
-    return $myPosts;
+    $posts = new WP_Query([
+        'post_type' => 'user_cards',
+        'meta_query' => [
+            'relation' => 'AND',
+            [
+                'key' => 'uid',
+                'value' => $request['uid']
+            ],
+            [
+                'key' => 'card_id',
+                'value' => $request['cardId']
+            ],
+        ]
+    ]);
+
+    if ($posts->have_posts()) {
+        $response = [];
+        foreach ($posts->posts as $key => $post) {
+            $acf = get_fields($post->ID);
+
+            $response = (array)$post;
+            $response['acf'] = $acf;
+        }
+    } else {
+        $response = [
+            'status'  => 200,
+            'message' => 'Нету карточки'
+        ];
+    }
+
+    return $response;
 }

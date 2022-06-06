@@ -43,6 +43,7 @@ const MainMenu = () => {
                     <li><Link href="/tariffs"><a>Тарифы</a></Link></li>
                     <li><Link href="/catalog"><a>Каталог</a></Link></li>
                     <li><Link href="/catalog"><a>Контакты</a></Link></li>
+                    <li><Link href="/cash"><a>Касса</a></Link></li>
                 </ul>
             </nav>
             {

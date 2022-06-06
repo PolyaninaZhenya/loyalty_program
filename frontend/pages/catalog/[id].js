@@ -20,16 +20,23 @@ export default function CatalogSingle({post}) {
         return await API.get(`ommo/v2/get_vendor?id=${id}`)
     }
 
-    useEffect(() => {
-        if (user && post.acf.user) {
-            let response = getVendor(user.uid);
+    const getUserCard = async () => {
+        const response = (await API.get('ommo/v2/get_user_card', {
+            params: {
+                uid: user.uid,
+                cardId: post.id
+            }
+        })).data
 
-            const userFind = post.acf.user?.find((item) => {
-                return item.uid === user.uid;
-            })
-
-            setUserCard(userFind)
+        if (response.ID) {
+            setUserCard(response)
         }
+    }
+
+    useEffect(() => {
+        // if (user && post.acf.user) {
+        //     let response = getVendor(user.uid);
+        // }
 
         if (post?.acf?.vendor_id) {
             backend.vendor()
@@ -40,17 +47,14 @@ export default function CatalogSingle({post}) {
         }
     }, [])
 
-    const getNewData = async () => {
-        const postNew = await backend.card().id(post.id)
-
-        if (postNew.acf.user && user) {
-            const userFind = postNew.acf.user.find((item) => {
-                return item.uid === user.uid;
-            })
-            setUserCard(userFind)
-        } else {
-            setUserCard(null)
+    useEffect(() => {
+        if (user) {
+            getUserCard()
         }
+    }, [user])
+
+    const getNewData = async () => {
+        const card = await backend.card().id(post.id)
     }
 
     const addUser = async () => {
@@ -62,6 +66,12 @@ export default function CatalogSingle({post}) {
             const response = await API.get('ommo/v2/add_user_for_card', {
                 params
             })
+                .catch(e => {
+                console.log(e)
+            })
+
+            console.log(response)
+
             await getNewData()
         }
     }
@@ -101,14 +111,14 @@ export default function CatalogSingle({post}) {
                                 <button
                                     className={'my-button__primary'}
                                     onClick={() => {
-                                        if (!userCard?.number) {
+                                        if (!userCard) {
                                             addUser()
                                         } else {
                                             deleteUser()
                                         }
                                     }}
                                 >
-                                    {!userCard?.number ? 'Добавить себе' : 'Удалить'}
+                                    {!userCard ? 'Добавить себе' : 'Удалить'}
                                 </button>
                                 {
                                     user.uid === vendor?.acf?.uid ?
@@ -129,9 +139,9 @@ export default function CatalogSingle({post}) {
                 </Grid>
             </div>
             {
-                userCard?.number &&
+                userCard?.acf.number &&
                 <div className={'body-pallet mv-32 barcode-block'}>
-                    <Barcode value={userCard.number} options={{format: 'code128'}}/>
+                    <Barcode value={userCard.acf.number} options={{format: 'code128'}}/>
                 </div>
             }
             {

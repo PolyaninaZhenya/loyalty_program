@@ -38,15 +38,13 @@ const Organization = () => {
                 console.log(res)
                 setVendor({...vendor, ...res.vendor})
                 setPosts(res.posts)
-
-                    console.log(posts)
+                console.log(posts)
             })
                 .catch(e => {
                     console.log(e)
                 })
         }
     }, [])
-
 
 
     return (
@@ -120,9 +118,9 @@ const Organization = () => {
                                 </tr>
                                 { posts.map((post) => (
                                     <tr>
-                                        <td>{post.ID}</td>
+                                        <td>{post?.ID}</td>
                                         <td><div className="table-cards__img">
-                                            <Image src={post.main_image.sizes.medium} alt="" layout={'fill'} objectFit={'cover'}/>
+                                            <Image src={post.main_image?.sizes.medium} alt="" layout={'fill'} objectFit={'cover'}/>
                                         </div></td>
                                         <td>{post.post_title}</td>
                                         <td><a href="#">Редактировать</a></td>
