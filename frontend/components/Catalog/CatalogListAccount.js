@@ -26,18 +26,13 @@ const CatalogListAccount = (props) => {
         style.title
     )
 
-    const getImage = async (id) => {
-        let buffer = await fetch(`http://admin.ommo.loc/wp-json/wp/v2/media?parent=${id}`)
-        return await buffer.json()
-    }
-
     return (
         <>
             <Grid container spacing={4}>
                 {
                     posts?.map((post) => (
                         <Grid item xs={12} md={6} lg={4} key={post.ID}>
-                            <CatalogItem post={post} image={getImage(post.ID)}/>
+                            <CatalogItem post={post}/>
                         </Grid>
                         )
                     )

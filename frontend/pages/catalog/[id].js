@@ -94,6 +94,8 @@ export default function CatalogSingle({post}) {
         router.push(`/edit/program/${post.acf?.program_id}`)
     }
 
+    console.log(userCard)
+
     return (
         <>
             <div className={'body-pallet'}>
@@ -139,7 +141,7 @@ export default function CatalogSingle({post}) {
                 </Grid>
             </div>
             {
-                userCard?.acf.number &&
+                userCard?.acf?.number &&
                 <div className={'body-pallet mv-32 barcode-block'}>
                     <Barcode value={userCard.acf.number} options={{format: 'code128'}}/>
                 </div>

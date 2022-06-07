@@ -25,98 +25,6 @@
             "ui": 1
         },
         {
-            "key": "field_623f39531ece6",
-            "label": "Пользователи",
-            "name": "users",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "acfe_permissions": "",
-            "acfe_repeater_stylised_button": 0,
-            "collapsed": "",
-            "min": 0,
-            "max": 0,
-            "layout": "table",
-            "button_label": "",
-            "acfe_settings": "",
-            "sub_fields": [
-                {
-                    "key": "field_623f396c1ece7",
-                    "label": "id Пользователя",
-                    "name": "uid",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "acfe_permissions": "",
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": "",
-                    "acfe_settings": "",
-                    "acfe_validate": ""
-                },
-                {
-                    "key": "field_6240379fe5f4b",
-                    "label": "ID карточки",
-                    "name": "card_id",
-                    "type": "number",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "acfe_permissions": "",
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "min": "",
-                    "max": "",
-                    "step": "",
-                    "acfe_settings": "",
-                    "acfe_validate": ""
-                },
-                {
-                    "key": "field_624dc79353366",
-                    "label": "Номер карточки",
-                    "name": "card_number",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "acfe_permissions": "",
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": "",
-                    "acfe_settings": "",
-                    "acfe_validate": ""
-                }
-            ]
-        },
-        {
             "key": "field_624dc71653365",
             "label": "Выберите карточку",
             "name": "card_id",
@@ -129,7 +37,9 @@
                 "class": "",
                 "id": ""
             },
-            "post_type": "",
+            "post_type": [
+                "card"
+            ],
             "taxonomy": "",
             "allow_null": 0,
             "multiple": 0,
@@ -155,5 +65,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 1,
-    "modified": 1651328593
+    "modified": 1654624363
 }

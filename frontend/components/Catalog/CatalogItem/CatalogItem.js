@@ -6,22 +6,19 @@ import Link from "next/link"
 const CatalogItem = ({post}) => {
     return (
         <div className={style.container}>
-            <Link href={`/catalog/${post?.id ?? post?.ID}`}>
+            <Link href={`/catalog/${post?.id ?? post?.data.ID}`}>
                 <a>
                 {
-                    post ? (
+                    post &&
                         <div className={style.wrapper}
                              style={{
-                                 backgroundImage: `url(${post.acf.main_image?.sizes?.medium ?? '/empty.png'})`,
+                                 backgroundImage: `url(${post.acf.main_image?.sizes?.medium ?? post.data.acf.main_image?.sizes?.medium ?? '/empty.png'})`,
                                  backgroundPosition: 'center'
                         }}
 
                         >
                             <span dangerouslySetInnerHTML={{__html: post?.title?.rendered ?? post?.post_title}} className={style.title}/>
                         </div>
-                    ) : (
-                        <Skeleton variant="rectangular" height={'100%'} className={style.skeleton}/>
-                    )
                 }
                 </a>
             </Link>

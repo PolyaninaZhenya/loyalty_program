@@ -1,10 +1,33 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Grid from "@mui/material/Grid";
 import TextField from '@mui/material/TextField';
 import {FormGroup} from '@mui/material';
 import Button from "@mui/material/Button";
+import API from '../utils/api'
 
 const Cash = () => {
+
+    const [numberCard, setNumberCard] = useState(0)
+    const [dataCard, setDataCard] = useState({})
+
+    const getDataCard = async () => {
+        const response = (await API.get('ommo/v2/get_user_card_by_number', {
+            params: {
+                number: numberCard
+            }
+        })).data
+
+        if (response.ID) {
+            setDataCard({...response})
+        }
+    }
+
+    useEffect(() => {
+        getDataCard()
+    }, [numberCard])
+
+    console.log(dataCard)
+
     return (
         <div className={'body-pallet'}>
             <h1>Касса</h1>
@@ -12,8 +35,16 @@ const Cash = () => {
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <div className={'inline-fields'}>
-                        <TextField variant={'standard'} className={'w80'} label={'Номер карты'}/>
-                        <TextField variant={'standard'} className={'w20'} value={'0'} label={'Всего баллов'} disabled/>
+                        <TextField
+                            type={'number'}
+                            value={numberCard}
+                            variant={'standard'}
+                            className={'w60'}
+                            label={'Номер карты'}
+                            onChange={event => setNumberCard(event?.target.value)}
+                        />
+                        <TextField variant={'standard'} className={'w20'} value={dataCard?.acf?.scores ?? 0} label={'Всего баллов'} disabled={true}/>
+                        <TextField variant={'standard'} className={'w20'} value={dataCard?.acf?.level ?? 0} label={'Уровень'} disabled={true}/>
                     </div>
                 </Grid>
                 <Grid item xs={12} md={6} className={'cash-fields'}>

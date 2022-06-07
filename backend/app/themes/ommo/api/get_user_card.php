@@ -6,12 +6,12 @@ add_action('rest_api_init', function () {
     $namespace = 'ommo/v2';
 
     // маршрут
-    $rout = '/get_user_cards';
+    $rout = '/get_user_card';
 
     // параметры конечной точки (маршрута)
     $rout_params = [
         'methods' => 'GET',
-        'callback' => 'get_user_cards',
+        'callback' => 'get_user_card',
         'permission_callback' => '__return_true',
     ];
 
@@ -19,22 +19,27 @@ add_action('rest_api_init', function () {
 });
 
 // функция обработчик конечной точки (маршрута)
-function get_user_cards(WP_REST_Request $request)
+function get_user_card(WP_REST_Request $request)
 {
 
-    if (empty($request['uid'])) {
-        $response = rest_ensure_response(['message' => 'Не переданы параметр uid']);
-        $response->set_status(400);
-
-        return $response;
+    if (empty($request['uid']) || empty($request['cardId'])) {
+        return [
+            'status' => 400,
+            'message' => 'Не переданы все нужные параметры uid и cardId'
+        ];
     }
 
     $posts = new WP_Query([
         'post_type' => 'user_cards',
         'meta_query' => [
+            'relation' => 'AND',
             [
                 'key' => 'uid',
                 'value' => $request['uid']
+            ],
+            [
+                'key' => 'card_id',
+                'value' => $request['cardId']
             ],
         ]
     ]);
@@ -43,19 +48,15 @@ function get_user_cards(WP_REST_Request $request)
         $response = [];
         foreach ($posts->posts as $key => $post) {
             $acf = get_fields($post->ID);
-            $data = get_post($acf['card_id']);
-            $acfData = get_fields($acf['card_id']);
 
-            $response[$key] = (array)$post;
-            $response[$key]['data'] = (array)$data;
-            $response[$key]['data']['acf'] = $acfData;
-            $response[$key]['acf'] = $acf;
+            $response = (array)$post;
+            $response['acf'] = $acf;
         }
     } else {
-        $response = rest_ensure_response(['message' => 'Нету карт']);
-        $response->set_status(400);
-
-        return $response;
+        $response = [
+            'status'  => 200,
+            'message' => 'Нету карточки'
+        ];
     }
 
     return $response;

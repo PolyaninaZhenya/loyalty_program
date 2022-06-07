@@ -15,9 +15,6 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 
 const UserMenu = (props) => {
     const {user, logout} = props
-    console.log(
-        user
-    )
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 

@@ -56,7 +56,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/OpenServer/domains/ommo.loc/backend/app/themes/ommo/post-type",
+    "last_opened_file_path": "D:/OpenServer/domains/ommo.loc/backend/app/themes/ommo/api",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -73,8 +73,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\OpenServer\domains\ommo.loc\backend\app\themes\ommo\post-type" />
       <recent name="D:\OpenServer\domains\ommo.loc\backend\app\themes\ommo\api" />
+      <recent name="D:\OpenServer\domains\ommo.loc\backend\app\themes\ommo\post-type" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\OpenServer\domains\ommo.loc\frontend\components\Catalog" />
@@ -120,7 +120,8 @@
       <workItem from="1654343545368" duration="717000" />
       <workItem from="1654346163759" duration="5645000" />
       <workItem from="1654422220935" duration="4149000" />
-      <workItem from="1654532034047" duration="11671000" />
+      <workItem from="1654532034047" duration="11741000" />
+      <workItem from="1654621841563" duration="3992000" />
     </task>
     <servers />
   </component>

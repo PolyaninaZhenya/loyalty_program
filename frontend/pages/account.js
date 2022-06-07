@@ -9,9 +9,9 @@ const Account = () => {
     const [posts, setPosts] = useState()
 
     const fetchData = async (user) => {
-        const result = await API.get(`ommo/v2/get_user_card`, {
+        const result = await API.get(`ommo/v2/get_user_cards`, {
             params: {
-                id: user.uid
+                uid: user.uid
             }
         })
         setPosts(result.data)
