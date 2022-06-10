@@ -1,108 +1,101 @@
 import TextField from "@mui/material/TextField";
 import style from "../components/FormLogin/FormLogin.module.scss";
 import FormGroup from "@mui/material/FormGroup";
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Button from "@mui/material/Button";
 import {Grid} from "@mui/material";
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import {
-    CSSTransition,
-    TransitionGroup,
-} from 'react-transition-group';
-import {Label} from "@mui/icons-material";
-import axios from "axios";
+import {CSSTransition, TransitionGroup,} from 'react-transition-group';
 import {useAuth} from "../context/auth";
 import API from "../utils/api";
 
-const NewProgram = ({title, data}) => {
-    const [programName, setProgramName] = useState(data?.program?.post_title ?? '')
-    const [programDesc, setProgramDesc] = useState(data?.program?.post_content ?? '')
-    const [programType, setProgramType] = useState(data?.program?.post_content ?? '')
-    const [cardName, setCardName] = useState(data?.card?.post_title ?? '')
-    const [cardDesc, setCardDesc] = useState(data?.card?.post_content ?? '')
-    const [files, setFiles] = useState([])
+const NewProgram = ({title, data, vendor}) => {
     const fileInput = useRef()
     const {user} = useAuth()
+    const [saving, setSaving] = useState({})
+    const [post, setPost] = useState(data ? {...data} : {
+        title: {
+            rendered: ""
+        },
+        content: {
+            rendered: "",
+            protected: false
+        },
+        cat_card: [4],
+        acf: {
+            vendor_id: null,
+            levels: [
+                {
+                    id: 1,
+                    percent: 0,
+                    parameter: "summa",
+                    condition: ">",
+                    value: 100
+                },
+            ]
+        }
+    })
 
-    const [levels, setLevels] = useState(data?.program?.acf?.levels ?? [{
-        id: 1,
-        percent: 0,
-        condition: '>',
-        parameter: 'summa',
-        value: 0
-    }])
+    console.log(post)
 
     const [programTypes, setProgramTypes] = useState([
         {
-            id: 5,
+            id: 4,
             value: 'Бонусная'
         },
         {
-            id: 6,
+            id: 7,
             value: 'Скидочная'
         },
     ])
 
-
     //Изменяем данные уровня
     const changeLevels = (id, field, value) => {
-        let newData = levels
+        let newData = post.acf.levels
+
         newData.forEach((level) => {
             if (level.id === id) {
                 level[field] = `${value}`
             }
         })
 
-        setLevels([...newData])
+        setPost({...post, acf: {levels: [...newData]}})
+    }
+
+    function cutTegs(str) {
+        return str.replace(/<\/?[^>]+(>|$)/gi, "").replace(/& nbsp;/gi,' ');
     }
 
     //Добавляем новый уровень
     const addLevel = () => {
-        let data
-        if (levels.length) {
-            data = {
-                id: (levels[levels.length - 1].id + 1),
-                percent: 0,
-                condition: '>',
-                parameter: 'summa',
-                value: 0,
-            }
-        } else {
-            data = {
-                id: 0,
-                percent: 0,
-                condition: '>',
-                parameter: 'summa',
-                value: 0,
-            }
-        }
+        let dataLevel = post.acf.levels
 
-        setLevels(arr => [...arr, data])
+        dataLevel.push({
+            id: (post.acf.levels[post.acf.levels.length - 1].id + 1),
+            percent: 0,
+            condition: '>',
+            parameter: 'summa',
+            value: 0,
+        })
+
+        setPost({...post, acf: {levels: [...dataLevel]}})
     }
 
     const removeLevel = (id) => {
-        const newData = levels.filter((item) => {
+        const newData = post.acf.levels.filter((item) => {
             return item.id !== id
         })
 
-        setLevels(newData)
+        setPost({...post, acf: {levels: [...newData]}})
     }
 
     const handlerSubmitForm = async (event) => {
         event.preventDefault();
 
         const params = {
-            cardId: data?.card?.ID,
-            cardName,
-            cardDesc,
-            programId: data?.program?.ID,
-            programType,
-            programDesc,
-            programName,
-            levels,
-            files,
+            post,
             user
         }
 
@@ -110,36 +103,32 @@ const NewProgram = ({title, data}) => {
             if (data) {
                 const response = await API.post('ommo/v2/edit_program', {
                     ...params
-                }, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
                 })
+                setSaving({...response})
+                console.log(response)
             } else {
                 const response = await API.post('ommo/v2/create_program', {
                     ...params
-                }, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
                 })
             }
+
         } catch (error) {
+            setSaving({...error})
             console.log(error.response)
         }
     }
 
+    console.log(saving)
+
     const handleInputFile = () => {
-        if (fileInput.current?.files[0]) {
-            setFiles(fileInput.current.files[0])
-        }
+        // if (fileInput.current?.files[0]) {
+        //     setFiles(fileInput.current.files[0])
+        // }
     }
 
     return (
         <div className={'body-pallet'}>
-            {
-                title ? <h1>{title}</h1> : <h1>Добавить программу</h1>
-            }
+            <h1>{title ? title : 'Добавить программу' }</h1>
             <br/>
             <form onSubmit={handlerSubmitForm}>
                 <Grid container spacing={4}>
@@ -151,8 +140,8 @@ const NewProgram = ({title, data}) => {
                                 name="program_name"
                                 label="Название"
                                 variant="standard"
-                                value={programName}
-                                onChange={event => setProgramName(event.target.value)}
+                                value={cutTegs(post.title.rendered)}
+                                onChange={event => setPost({...post, title: {rendered: event.target.value}})}
                                 fullWidth={true}
                                 className={style.input}
                             />
@@ -160,13 +149,13 @@ const NewProgram = ({title, data}) => {
                             <TextField
                                 id="program_description"
                                 name="program_description"
-                                value={programDesc}
-                                onChange={event => setProgramDesc(event.target.value)}
+                                value={cutTegs(post.content.rendered)}
+                                onChange={event => setPost({...post, content: {rendered: event.target.value}})}
                                 label="Описание"
                                 variant="standard"
                                 fullWidth={true}
                                 className={style.input}
-                                placeholder={'Тип программы'}
+                                placeholder={'Описание'}
                             />
                             <br/>
                             <FormGroup>
@@ -178,7 +167,8 @@ const NewProgram = ({title, data}) => {
                                     id={`program_type`}
                                     name={`program_type`}
                                     label="Условие"
-                                    onChange={e => setProgramType(e.target.value)}
+                                    value={post.cat_card[0]}
+                                    onChange={e => setPost({...post, cat_card: [e.target.value]})}
                                 >
                                     {programTypes.map((item) => (
                                         <MenuItem value={item.id} key={item.id}>
@@ -189,27 +179,6 @@ const NewProgram = ({title, data}) => {
                             </FormGroup>
                         </FormGroup>
                         <br/>
-                        <h4>Карта</h4><br/>
-                        <FormGroup>
-                            <TextField
-                                id="program_card_name"
-                                name="program_card_name"
-                                label="Название карты"
-                                variant="standard"
-                                className={style.input}
-                                value={cardName}
-                                onChange={e => setCardName(e.target.value)}
-                            /><br/>
-                            <TextField
-                                id="program_card_desc"
-                                label="Описание"
-                                variant="standard"
-                                className={style.input}
-                                value={cardDesc}
-                                onChange={e => setCardDesc(e.target.value)}
-                            />
-                        </FormGroup>
-                        <br/>
                         <input type={'file'} ref={fileInput} onChange={handleInputFile}/>
                     </Grid>
                     <Grid item xs={12} md={7}>
@@ -217,7 +186,7 @@ const NewProgram = ({title, data}) => {
                         <br/>
                         <TransitionGroup className="todo-list">
                             {
-                                levels?.map(item => (
+                                post?.acf?.levels?.map(item => (
                                     <CSSTransition
                                         key={item?.id}
                                         timeout={500}
@@ -228,7 +197,7 @@ const NewProgram = ({title, data}) => {
                                             gap: '16px',
                                             alignItems: 'flex-end',
                                             marginBottom: '16px'
-                                        }}>
+                                        }} >
                                             <TextField
                                                 id={`level_percent_${item?.id}`}
                                                 label="% скидки"
@@ -302,8 +271,9 @@ const NewProgram = ({title, data}) => {
                         type={'submit'}
                         className={style.button}
                 >
-                    {data ? 'Сохранить' : 'Создать'}
+                    {post ? 'Сохранить' : 'Создать'}
                 </Button>
+                {saving?.data && <span style={{color: saving.status === 200 ? 'green' : 'red'}}> {saving.data.message}</span>}
             </form>
         </div>
     );

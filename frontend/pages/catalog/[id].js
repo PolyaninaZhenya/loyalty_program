@@ -91,10 +91,8 @@ export default function CatalogSingle({post}) {
     }
 
     const editProgram = () => {
-        router.push(`/edit/program/${post.acf?.program_id}`)
+        router.push(`/edit/${post.id}`)
     }
-
-    console.log(userCard)
 
     return (
         <>

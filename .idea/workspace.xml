@@ -18,6 +18,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="SCSS File" />
       </list>
     </option>
   </component>
@@ -56,7 +57,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/OpenServer/domains/ommo.loc/backend/app/themes/ommo/api",
+    "last_opened_file_path": "D:/OpenServer/domains/ommo.loc/backend/app/themes/ommo/post-type",
+    "list.type.of.created.stylesheet": "SCSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -73,10 +75,12 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\OpenServer\domains\ommo.loc\backend\app\themes\ommo\api" />
       <recent name="D:\OpenServer\domains\ommo.loc\backend\app\themes\ommo\post-type" />
+      <recent name="D:\OpenServer\domains\ommo.loc\backend\app\themes\ommo\api" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\OpenServer\domains\ommo.loc\frontend\components\Sections\SectionBlocked" />
+      <recent name="D:\OpenServer\domains\ommo.loc\frontend\pages\edit" />
       <recent name="D:\OpenServer\domains\ommo.loc\frontend\components\Catalog" />
     </key>
   </component>
@@ -121,7 +125,9 @@
       <workItem from="1654346163759" duration="5645000" />
       <workItem from="1654422220935" duration="4149000" />
       <workItem from="1654532034047" duration="11741000" />
-      <workItem from="1654621841563" duration="3992000" />
+      <workItem from="1654621841563" duration="4329000" />
+      <workItem from="1654791773867" duration="11559000" />
+      <workItem from="1654807817571" duration="3801000" />
     </task>
     <servers />
   </component>

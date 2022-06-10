@@ -30,7 +30,8 @@ function get_vendor_by_id(WP_REST_Request $request): array
     if (empty($post)) {
         return [
             'status'  => '404',
-            'message' => 'Ничего нет'
+            'message' => 'Ничего нет',
+            'post'    => $post
         ];
     }
 

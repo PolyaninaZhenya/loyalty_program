@@ -144,7 +144,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "program"
+                "value": "card"
             }
         ]
     ],
@@ -157,5 +157,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1652114173
+    "modified": 1654799725
 }

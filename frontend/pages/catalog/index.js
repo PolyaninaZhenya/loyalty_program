@@ -6,11 +6,6 @@ import API from "../../utils/api";
 
 export default function Catalog({posts}) {
 
-    // const getImage = async (id) => {
-    //     let response = await API.get(`wp/v2/media?parent=${id}`)
-    //     return response.data
-    // }
-
     return (
         <>
             <div className={'body-pallet'}>

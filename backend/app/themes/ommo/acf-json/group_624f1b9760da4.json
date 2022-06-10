@@ -34,7 +34,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "all"
+                "value": "card"
             }
         ]
     ],
@@ -47,12 +47,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "acfe_display_title": "",
-    "acfe_autosync": [
-        "json"
-    ],
-    "acfe_form": 0,
-    "acfe_meta": "",
-    "acfe_note": "",
-    "modified": 1649351627
+    "modified": 1654799150
 }

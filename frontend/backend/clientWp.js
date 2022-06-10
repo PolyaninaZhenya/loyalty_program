@@ -7,7 +7,7 @@ const backend = new WPAPI({
 backend.programs = backend.registerRoute( 'wp/v2', '/program/(?P<id>)' );
 backend.vendor = backend.registerRoute( 'wp/v2', '/vendor/(?P<id>)' );
 backend.card = backend.registerRoute( 'wp/v2', '/card/(?P<id>)' );
-backend.getVendor = backend.registerRoute( 'ommo/v2', '/get_vendor_by_id/(?P<id>)');
+backend.getVendor = backend.registerRoute( 'ommo/v2', '/get_vendor/(?P<id>)');
 
 backend.addUserForCard = backend.registerRoute( 'ommo/v2', '/add_user_for_card/(?P<id>)', {
     params: [ 'postId', 'userId']

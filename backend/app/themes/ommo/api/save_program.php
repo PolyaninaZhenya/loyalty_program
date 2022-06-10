@@ -30,34 +30,24 @@ function edit_program(WP_REST_Request $request)
 {
     $data = $request->get_params();
 
-    if (isset($data['params'])) {
-        $program_data = [
-            'ID'            => $data['programId'],
-            'post_type'     => 'program',
-            'post_title'    => $data['programName'],
-            'post_content'  => $data['programDesc'],
-            'post_status'   => 'publish',
-            'post_author'   => 1,
-            'post_category' => [$data['programType']]
-        ];
-        $update_program = wp_update_post($program_data);
-        update_field('levels', $data['levels'], $data['programId']);
-
+    if (!empty($data)) {
         $card_data = [
-            'ID'            => $data['cardId'],
+            'ID'            => $data['post']['id'],
             'post_type'     => 'card',
-            'post_title'    => $data['cardName'],
-            'post_content'  => $data['cardDesc'],
+            'post_title'    => $data['post']['title']['rendered'],
+            'post_content'  => $data['post']['content']['rendered'],
             'post_status'   => 'publish',
             'post_author'   => 1,
         ];
+
         $update_card = wp_update_post($card_data);
+        wp_set_post_terms($data['post']['id'], $data['post']['cat_card'], 'cat_card', false);
+        update_field('levels', $data['post']['acf']['levels'], $data['post']['id']);
 
         return [
             'status'  => '200',
             'requset' => $request,
             'data'    => $request->get_params(),
-            'program' => $update_program,
             'card'    => $update_card,
             'message' => 'Успешно обновлено'
         ];

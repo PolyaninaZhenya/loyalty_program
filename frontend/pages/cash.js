@@ -9,6 +9,7 @@ const Cash = () => {
 
     const [numberCard, setNumberCard] = useState(0)
     const [dataCard, setDataCard] = useState({})
+    const [notValid, setNotValid] = useState()
 
     const getDataCard = async () => {
         const response = (await API.get('ommo/v2/get_user_card_by_number', {
@@ -19,14 +20,16 @@ const Cash = () => {
 
         if (response.ID) {
             setDataCard({...response})
+            setNotValid(false)
+        } else {
+            setDataCard({})
+            setNotValid(true)
         }
     }
 
     useEffect(() => {
         getDataCard()
     }, [numberCard])
-
-    console.log(dataCard)
 
     return (
         <div className={'body-pallet'}>
@@ -41,10 +44,18 @@ const Cash = () => {
                             variant={'standard'}
                             className={'w60'}
                             label={'Номер карты'}
+                            error={notValid}
+                            helperText={notValid ? 'Неправильный номер карты' : null}
                             onChange={event => setNumberCard(event?.target.value)}
                         />
-                        <TextField variant={'standard'} className={'w20'} value={dataCard?.acf?.scores ?? 0} label={'Всего баллов'} disabled={true}/>
-                        <TextField variant={'standard'} className={'w20'} value={dataCard?.acf?.level ?? 0} label={'Уровень'} disabled={true}/>
+                        <div className={'w20'}>
+                            Всего баллов: <br/>
+                            <h4>{dataCard?.acf?.scores ?? 0}</h4>
+                        </div>
+                        <div className={'w20'}>
+                            Уровень: <br/>
+                            <h4>{dataCard?.acf?.level ?? 0}</h4>
+                        </div>
                     </div>
                 </Grid>
                 <Grid item xs={12} md={6} className={'cash-fields'}>
