@@ -89,7 +89,7 @@ function register_post_types_payment()
         //'map_meta_cap'      => null,                       // Ставим true чтобы включить дефолтный обработчик специальных прав
         'hierarchical'        => false,
         'supports'            => [
-            'title',
+            'custom-fields',
 //            'editor',
 //            'thumbnail',
         ],

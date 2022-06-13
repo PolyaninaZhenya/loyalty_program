@@ -3,6 +3,7 @@ import UserMenu from "../UserMenu/UserMenu";
 import Link from "next/link";
 import {useAuth} from "../../../context/auth";
 import {useRouter} from "next/router";
+import {useEffect} from "react";
 
 const MainMenu = () => {
     const {user, login, logout} = useAuth();
@@ -35,6 +36,10 @@ const MainMenu = () => {
             active: false,
         }
     ]
+
+    useEffect(() => {
+
+    }, [user])
 
     return (
         <>

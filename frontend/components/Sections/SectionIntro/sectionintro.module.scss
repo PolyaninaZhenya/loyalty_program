@@ -1,7 +1,10 @@
-.image{
-  background-image: url("../../../public/intro.png");
+.image {
+  background-image: url("../../../public/main.png");
   border-radius: var(--border-radius-pallet);
+  background-repeat: no-repeat;
+  background-position: center center;
   overflow: hidden;
+  background-size: contain;
 }
 
 .body {

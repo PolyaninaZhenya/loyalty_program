@@ -4,12 +4,25 @@ import TextField from '@mui/material/TextField';
 import {FormGroup} from '@mui/material';
 import Button from "@mui/material/Button";
 import API from '../utils/api'
+import backend from "../backend/clientWp";
+import BonusCash from "../components/BonusCash/BonusCash";
+import SaleCash from "../components/SaleCash/SaleCash";
 
 const Cash = () => {
 
     const [numberCard, setNumberCard] = useState(0)
     const [dataCard, setDataCard] = useState({})
     const [notValid, setNotValid] = useState()
+    const [dataProgram, setDataProgram] = useState()
+
+    const createPayment = async (summa, uid, number, bonuses = 0) => {
+        return await API.post('ommo/v2/create_payment', {
+            summa,
+            uid,
+            number,
+            bonuses
+        })
+    }
 
     const getDataCard = async () => {
         const response = (await API.get('ommo/v2/get_user_card_by_number', {
@@ -17,6 +30,11 @@ const Cash = () => {
                 number: numberCard
             }
         })).data
+
+        if (response?.acf?.card_id) {
+            const data = await backend.card().id(response?.acf?.card_id)
+            setDataProgram(data)
+        }
 
         if (response.ID) {
             setDataCard({...response})
@@ -33,7 +51,15 @@ const Cash = () => {
 
     return (
         <div className={'body-pallet'}>
-            <h1>Касса</h1>
+            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                <h1>Касса</h1>
+                <Button variant="contained"
+                        size={'large'}
+                        component="button"
+                        onClick={getDataCard}
+                > Обновить
+                </Button>
+            </div>
             <br/>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
@@ -42,59 +68,33 @@ const Cash = () => {
                             type={'number'}
                             value={numberCard}
                             variant={'standard'}
-                            className={'w60'}
+                            className={'w80'}
                             label={'Номер карты'}
                             error={notValid}
                             helperText={notValid ? 'Неправильный номер карты' : null}
                             onChange={event => setNumberCard(event?.target.value)}
                         />
                         <div className={'w20'}>
-                            Всего баллов: <br/>
-                            <h4>{dataCard?.acf?.scores ?? 0}</h4>
-                        </div>
-                        <div className={'w20'}>
                             Уровень: <br/>
                             <h4>{dataCard?.acf?.level ?? 0}</h4>
                         </div>
                     </div>
                 </Grid>
-                <Grid item xs={12} md={6} className={'cash-fields'}>
-                    <br/>
-                    <h4>Зачисление бонусов</h4>
-                    <FormGroup>
-                        <TextField variant={'standard'} label={'Сумма покупки'}/>
-                    </FormGroup>
-                    <FormGroup>
-                        <TextField variant={'standard'} label={'Кол-во бонусов'}/>
-                    </FormGroup>
-                    <div className={'cash-fields__footer'}>
-                        <Button variant="contained"
-                                size={'large'}
-                                component="button"
-                        > Зачислить
-                        </Button>
-                    </div>
-                </Grid>
-                <Grid item xs={12} md={6} className={'cash-fields'}>
-                    <br/>
-                    <h4>Списание бонусов</h4>
-                    <FormGroup>
-                        <TextField variant={'standard'} label={'Сумма покупки'}/>
-                    </FormGroup>
-                    <FormGroup>
-                        <TextField variant={'standard'} label={'Сколько списать баллов'}/>
-                    </FormGroup>
-                    <FormGroup>
-                        <TextField variant={'standard'} value={0 + ' ₽'} label={'Итоговая сумма'}/>
-                    </FormGroup>
-                    <div className={'cash-fields__footer'}>
-                        <Button variant="contained"
-                                size={'large'}
-                                component="button"
-                        > Списать
-                        </Button>
-                    </div>
-                </Grid>
+                {
+                    dataCard && dataProgram && dataProgram?.cat_card[0] === 4 ?
+                        <BonusCash
+                            card={dataCard}
+                            program={dataProgram}
+                            createPayment={createPayment}
+                            update={getDataCard}
+                        /> :
+                        <SaleCash
+                            card={dataCard}
+                            program={dataProgram}
+                            createPayment={createPayment}
+                            update={getDataCard}
+                        />
+                }
             </Grid>
         </div>
     );

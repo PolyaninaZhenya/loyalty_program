@@ -3,7 +3,49 @@
     "title": "Поля платежей",
     "fields": [
         {
-            "key": "field_62a2380d5acf1",
+            "key": "field_62a752bd3d9e5",
+            "label": "Номер карты",
+            "name": "number",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
+        },
+        {
+            "key": "field_62a238895acf2",
+            "label": "Сумма покупки",
+            "name": "summa",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
+        },
+        {
+            "key": "field_62a753093d9e6",
             "label": "Пользователь",
             "name": "uid",
             "type": "text",
@@ -22,10 +64,10 @@
             "maxlength": ""
         },
         {
-            "key": "field_62a238895acf2",
-            "label": "Сумма",
-            "name": "summa",
-            "type": "number",
+            "key": "field_62a7537c3d9e7",
+            "label": "Начислено бонусов",
+            "name": "bonuses",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -38,9 +80,7 @@
             "placeholder": "",
             "prepend": "",
             "append": "",
-            "min": "",
-            "max": "",
-            "step": ""
+            "maxlength": ""
         }
     ],
     "location": [
@@ -76,5 +116,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1654799173
+    "modified": 1655133134
 }

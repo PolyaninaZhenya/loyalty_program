@@ -63,7 +63,7 @@ function add_user_for_card(WP_REST_Request $request): array
         update_field('number', $number, $newCard);
         update_field('uid', $request['userId'], $newCard);
         update_field('scores', 0, $newCard);
-        update_field('level', 0, $newCard);
+        update_field('level', 1, $newCard);
         update_field('card_id', $request['postId'], $newCard);
 
         return [
@@ -91,7 +91,7 @@ add_action('rest_api_init', function () {
 
     // параметры конечной точки (маршрута)
     $rout_params = [
-        'methods' => 'GET',
+        'methods' => 'POST',
         'callback' => 'delete_user_for_card',
         'permission_callback' => '__return_true',
     ];
@@ -100,16 +100,20 @@ add_action('rest_api_init', function () {
 });
 
 // функция обработчик конечной точки (маршрута)
-function delete_user_for_card(WP_REST_Request $request): array
+function delete_user_for_card(WP_REST_Request $request)
 {
 
-    $users = get_field('user', $request['postId']);
-    $response['old_users'] = $users;
-    $response['users'] = array_diff($users, [[$request['userId']]]);
-    $response['status'] = 200;
-    $response['message'] = 'Успешно удален';
+    if (empty($request['id'])) {
+        $response = rest_ensure_response(['message' => 'не передан ID']);
+        $response->set_status(400);
 
-    $update = update_field('user', $response['users'], $request['postId']);
+        return $response;
+    }
 
-    return $response;
+    $post_id = wp_delete_post($request['id']);
+
+    return [
+        'id' => $post_id,
+        'message' => 'Успешно удалена карта'
+    ];
 }

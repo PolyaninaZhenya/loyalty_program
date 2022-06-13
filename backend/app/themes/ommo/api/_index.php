@@ -7,3 +7,4 @@ require_once 'create_program.php';
 require_once 'save_program.php';
 require_once 'get_vendor_card.php';
 require_once 'get_user_card_by_number.php';
+require_once 'create_payment.php';

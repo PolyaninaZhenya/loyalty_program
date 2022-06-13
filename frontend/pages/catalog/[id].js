@@ -11,7 +11,7 @@ import API from "../../utils/api";
 
 export default function CatalogSingle({post}) {
     const {user} = useAuth()
-    const [userCard, setUserCard] = useState({})
+    const [userCard, setUserCard] = useState(null)
     const router = useRouter()
 
     const [vendor, setVendor] = useState()
@@ -30,14 +30,12 @@ export default function CatalogSingle({post}) {
 
         if (response.ID) {
             setUserCard(response)
+        } else {
+            setUserCard(null)
         }
     }
 
     useEffect(() => {
-        // if (user && post.acf.user) {
-        //     let response = getVendor(user.uid);
-        // }
-
         if (post?.acf?.vendor_id) {
             backend.vendor()
                 .id(post?.acf?.vendor_id)
@@ -52,10 +50,6 @@ export default function CatalogSingle({post}) {
             getUserCard()
         }
     }, [user])
-
-    const getNewData = async () => {
-        const card = await backend.card().id(post.id)
-    }
 
     const addUser = async () => {
         if (user) {
@@ -72,21 +66,17 @@ export default function CatalogSingle({post}) {
 
             console.log(response)
 
-            await getNewData()
+            getUserCard()
         }
     }
 
     const deleteUser = async () => {
         if (user) {
-            const params = {
-                postId: post.id,
-                userId: user.uid
-            }
-            const response = await API.get('/ommo/v2/delete_user_for_card', {
-                params
+            const response = await API.post('/ommo/v2/delete_user_for_card', {
+                id: userCard.ID,
             })
 
-            await getNewData()
+            getUserCard()
         }
     }
 
